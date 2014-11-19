@@ -1,0 +1,24 @@
+doctype html
+html
+head
+  title Stadtratmonitor Leipzig
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'vendor/modernizr'
+  = csrf_meta_tags
+
+body
+  .row
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: name
+  .row
+    .large-8.columns
+      h2#title
+       = link_to 'Willkommen in Leipzig', root_path
+    .large-4.columns
+      ul.inline-list.right
+        li = render 'login_button'
+  .row
+    = yield
+
+  script src="https://login.persona.org/include.js"
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true

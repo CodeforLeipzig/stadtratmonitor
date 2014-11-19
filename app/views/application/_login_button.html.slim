@@ -1,0 +1,9 @@
+= form_tag '/auth/browser_id/callback', id: 'browser-id-form'
+  = hidden_field_tag(:assertion)
+
+- if signed_in?
+  = link_to session_path, data: { method: :delete, logout: true }
+    | Abmelden
+- else
+  = link_to session_path, data: { 'persona-login' => true }
+    | Anmelden
