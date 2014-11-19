@@ -1,4 +1,21 @@
 = form_tag(search_path, method: :get)
-  = label_tag(:q, 'Suche:')
-  = text_field_tag(:q)
-  = submit_tag 'Suchen', class: 'button'
+  = text_field_tag(:q, params[:q], placeholder: 'Suche…')
+
+.row
+  - if @result
+    .small-9.columns
+      | #{@result['hits']['total']} Treffer
+    .small-3.columns
+      button.button.right TODO: Suche Abbonieren
+
+- if @result
+  ul.no-bullet
+    - @result['hits']['hits'].each do |doc|
+      li.search-result
+        small = doc['_source']['paperType']
+        '
+        small = doc['_source']['originator'].join(', ')
+        '
+        small = doc['_source']['publishedDate']
+        = link_to "https://ratsinfo.leipzig.de/bi/#{doc['_source']['mainFile']}", target: '_blank' do
+          div = doc['_source']['name']
