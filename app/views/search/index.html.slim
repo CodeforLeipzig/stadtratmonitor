@@ -1,21 +1,22 @@
-= form_tag(search_path, method: :get)
-  = text_field_tag(:q, params[:q], placeholder: 'Suche…')
+div
+  = form_tag(search_path, method: :get)
+    = text_field_tag(:q, params[:q], placeholder: 'Suche…')
 
-.row
+.clearfix
   - if @result
-    .small-9.columns
+    .left
       | #{@result['hits']['total']} Treffer
-    .small-3.columns
-      button.button.right TODO: Suche Abbonieren
-
-- if @result
-  ul.no-bullet
-    - @result['hits']['hits'].each do |doc|
-      li.search-result
-        small = doc['_source']['paperType']
-        '
-        small = doc['_source']['originator'].join(', ')
-        '
-        small = doc['_source']['publishedDate']
-        = link_to "https://ratsinfo.leipzig.de/bi/#{doc['_source']['mainFile']}", target: '_blank' do
-          div = doc['_source']['name']
+    .right
+      button.button. TODO: Suche Abbonieren
+div
+  - if @result
+    ul.no-bullet
+      - @result['hits']['hits'].each do |doc|
+        li.search-result
+          small = doc['_source']['paperType']
+          '
+          small = doc['_source']['originator'].join(', ')
+          '
+          small = doc['_source']['publishedDate']
+          = link_to "https://ratsinfo.leipzig.de/bi/#{doc['_source']['mainFile']}", target: '_blank' do
+            div = doc['_source']['name']
