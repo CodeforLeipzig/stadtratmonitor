@@ -84,6 +84,9 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kaminari-i18n (0.3.2)
+      kaminari
+      rails
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.0.1)
@@ -192,6 +195,7 @@ DEPENDENCIES
   foundation-rails
   jquery-rails
   kaminari
+  kaminari-i18n
   launchy
   omniauth
   omniauth-browserid
