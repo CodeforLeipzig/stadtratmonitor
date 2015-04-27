@@ -16,7 +16,8 @@ class Paper < ActiveRecord::Base
           originator: record['originator'],
           published_at: record['published_at'],
         }
-        create!(attributes)
+        record = find_or_initialize_by(url: attributes[:url])
+        record.update_attributes!(attributes)
       end
     end
   end
