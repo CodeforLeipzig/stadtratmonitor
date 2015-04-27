@@ -1,22 +1,20 @@
 div
-  = form_tag(search_path, method: :get)
-    = text_field_tag(:q, params[:q], placeholder: 'Suche…', autofocus: true)
+  = render 'search/form'
 
 .clearfix
-  - if @result
+  - if @show_search_result
     .left
-      | #{@result.size} Treffer
+      | #{@papers.size} Treffer
     .right
       button.button. TODO: Suche Abbonieren
 div
-  - if @result
-    ul.no-bullet
-      - @result.each do |doc|
-        li.search-result
-          small = doc.paper_type
-          '
-          small = doc.originator
-          '
-          small = doc.published_at
-          = link_to doc.url, target: '_blank' do
-            div = doc.name
+  ul.no-bullet
+    - @papers.each do |doc|
+      li.search-result
+        small = doc.paper_type
+        '
+        small = doc.originator
+        '
+        small = doc.published_at
+        = link_to doc.url, target: '_blank' do
+          div = doc.name
