@@ -4,7 +4,7 @@ div
 .clearfix
   - if @show_search_result
     .left
-      | #{@papers.size} Treffer
+      | #{@papers.total} Treffer
     .right
       button.button. TODO: Suche Abbonieren
 div
@@ -18,3 +18,6 @@ div
         small = doc.published_at
         = link_to doc.url, target: '_blank' do
           div = doc.name
+
+div
+  = paginate @papers

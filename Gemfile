@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'kaminari'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
