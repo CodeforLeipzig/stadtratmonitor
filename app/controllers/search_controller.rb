@@ -1,9 +1,8 @@
 class SearchController < ApplicationController
   def index
     @result = if params[:q].present?
-      es = Elasticsearch::Client.new
       # TODO: Add pagination
-      es.search index: 'loris', q: params[:q], size: 30
+      Paper.search(params[:q]).records
     end
   end
 end

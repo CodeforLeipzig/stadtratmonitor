@@ -26,6 +26,7 @@ gem 'omniauth'
 gem 'omniauth-browserid'
 
 gem 'elasticsearch'
+gem 'elasticsearch-model'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc

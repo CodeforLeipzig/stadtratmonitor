@@ -1,6 +1,10 @@
+require 'elasticsearch/model'
 require 'json'
 
 class Paper < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   class << self
     def import_from_json(json_string)
       JSON.parse(json_string).each do |record|

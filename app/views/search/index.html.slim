@@ -5,18 +5,18 @@ div
 .clearfix
   - if @result
     .left
-      | #{@result['hits']['total']} Treffer
+      | #{@result.size} Treffer
     .right
       button.button. TODO: Suche Abbonieren
 div
   - if @result
     ul.no-bullet
-      - @result['hits']['hits'].each do |doc|
+      - @result.each do |doc|
         li.search-result
-          small = doc['_source']['paperType']
+          small = doc.paper_type
           '
-          small = doc['_source']['originator'].join(', ')
+          small = doc.originator
           '
-          small = doc['_source']['publishedDate']
-          = link_to "https://ratsinfo.leipzig.de/bi/#{doc['_source']['mainFile']}", target: '_blank' do
-            div = doc['_source']['name']
+          small = doc.published_at
+          = link_to doc.url, target: '_blank' do
+            div = doc.name
