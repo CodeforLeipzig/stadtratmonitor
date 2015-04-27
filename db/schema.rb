@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20150413193656) do
     t.datetime "scraped_at"
     t.string   "paper_type"
     t.string   "originator"
+    t.text     "resolution"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
