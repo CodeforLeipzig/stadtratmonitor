@@ -4,9 +4,11 @@ div
 .clearfix
   - if @show_search_result
     .left
-      | #{@papers.total} Treffer
+      | #{@papers_count} Treffer
     .right
       button.button. TODO: Suche Abbonieren
+  - else
+    | #{@papers_count} Dokumente in der Datenbank
 div
   ul.no-bullet
     - @papers.each do |doc|
