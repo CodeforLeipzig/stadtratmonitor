@@ -1,16 +1,16 @@
-require 'csv'
+require 'json'
 
 class Paper < ActiveRecord::Base
   class << self
-    def import_from_csv(csv_string)
-      CSV.parse(csv_string, headers: true) do |row|
+    def import_from_json(json_string)
+      JSON.parse(json_string).each do |record|
         attributes = {
-          name: row['name'],
-          url: row['url'],
-          reference: row['reference'],
-          paper_type: row['paper_type'],
-          originator: row['originator'],
-          published_at: row['published_at'],
+          name: record['name'],
+          url: record['url'],
+          reference: record['reference'],
+          paper_type: record['paper_type'],
+          originator: record['originator'],
+          published_at: record['published_at'],
         }
         create!(attributes)
       end
