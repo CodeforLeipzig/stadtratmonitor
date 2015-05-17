@@ -11,12 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413193656) do
+ActiveRecord::Schema.define(version: 20150517152218) do
 
-  create_table "papers", force: true do |t|
+  create_table "importers", force: :cascade do |t|
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "papers", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
     t.string   "reference"
+    t.string   "body"
     t.datetime "published_at"
     t.datetime "scraped_at"
     t.string   "paper_type"
@@ -27,7 +34,12 @@ ActiveRecord::Schema.define(version: 20150413193656) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  add_index "papers", ["body"], name: "index_papers_on_body"
+  add_index "papers", ["originator"], name: "index_papers_on_originator"
+  add_index "papers", ["reference", "body"], name: "index_papers_on_reference_and_body", unique: true
+  add_index "papers", ["reference"], name: "index_papers_on_reference"
+
+  create_table "users", force: :cascade do |t|
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
