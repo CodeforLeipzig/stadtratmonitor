@@ -17,7 +17,7 @@ div
         '
         small = doc.originator
         '
-        small = doc.published_at
+        small = l doc.published_at.to_date
         = link_to doc.url, target: '_blank' do
           div = doc.name
 
