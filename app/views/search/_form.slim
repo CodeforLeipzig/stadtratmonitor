@@ -1,2 +1,13 @@
 = form_tag(search_path, method: :get)
   = text_field_tag(:q, params[:q], placeholder: 'Suche…', autofocus: true)
+  - if @show_filters
+    fieldset
+      legend Ergebnisse filtern
+      .row
+        .small-4.columns
+          = label "paper_type", "Typ"
+          = select_tag "paper_type", options_for_select(@paper_types_found, @paper_type), include_blank: true, :onchange => "this.form.submit();"
+        .small-4.columns.end
+          = label "originator", "Einreicher"
+          = select_tag "originator", options_for_select(@originators_found, @originator), include_blank: true, :onchange => "this.form.submit();"
+
