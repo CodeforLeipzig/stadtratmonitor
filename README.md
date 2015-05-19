@@ -18,7 +18,7 @@ Scrapers are stored inside the database (see "Importer" model). To Add a new scr
 Adding a scraper manually:
 
 1. Start Rails console `bundle exec rails console`
-2. `Import.create(url: https://api.morph.io/[scraper]/data.json?key=[api_key]&query=[sql])`
+2. `Import.create(url: "https://api.morph.io/[scraper]/data.json?key=[api_key]&query=[sql]")`
 3. `exit`
 
 Now import everything via `bundle exec rake import_papers:from_morph`.
