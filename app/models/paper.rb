@@ -29,5 +29,26 @@ class Paper < ActiveRecord::Base
       end
       puts "Imported #{count - old_count} Papers!"
     end
+
+    # use DSL to define search queries
+    # see https://github.com/elastic/elasticsearch-ruby/tree/master/elasticsearch-dsl
+    # and https://github.com/elastic/elasticsearch-rails/tree/master/elasticsearch-rails/lib/rails/templates
+    def search(q)
+      @search_definition = Elasticsearch::DSL::Search.search do
+        query do
+          unless q.blank?
+            multi_match do
+              query q
+              fields ["name", "content"]
+            end
+          else
+            match_all
+          end
+        end
+      end
+      puts @search_definition.to_hash
+      __elasticsearch__.search(@search_definition)
+    end
+
   end
 end

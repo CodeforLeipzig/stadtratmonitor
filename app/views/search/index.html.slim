@@ -2,13 +2,13 @@ div
   = render 'search/form'
 
 .clearfix
-  - if @show_search_result
+  - if params[:q].present?
     .left
-      | #{@papers_count} Treffer
+      | #{@papers.total} Treffer
     .right
       / button.button. TODO: Suche Abbonieren
   - else
-    | #{@papers_count} Dokumente in der Datenbank
+    | #{@papers.total} Dokumente in der Datenbank
 div
   ul.no-bullet
     - @papers.each do |doc|
