@@ -1,6 +1,13 @@
 div
   = render 'search/form'
 
+.row
+  .small-4.columns
+    ul
+    - @paper_type_facets.each do |paper_type, count|
+      li.facet
+        = "#{paper_type} (#{count})"
+
 .clearfix
   - if params[:q].present?
     .left

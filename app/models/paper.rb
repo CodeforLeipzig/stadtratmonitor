@@ -9,6 +9,15 @@ class Paper < ActiveRecord::Base
   validates_presence_of :published_at, allow_nil: true
   validates :url, uniqueness: true
 
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: false do
+      indexes :name, type: :string
+      indexes :content, type: :string
+      indexes :resolution, type: :string
+      indexes :paper_type, type: :string, index: :not_analyzed
+    end
+  end  
+
   class << self
     def import_from_json(json_string)
       old_count = count
@@ -35,6 +44,7 @@ class Paper < ActiveRecord::Base
     # and https://github.com/elastic/elasticsearch-rails/tree/master/elasticsearch-rails/lib/rails/templates
     def search(q)
       @search_definition = Elasticsearch::DSL::Search.search do
+
         query do
           unless q.blank?
             multi_match do
@@ -45,9 +55,21 @@ class Paper < ActiveRecord::Base
             match_all
           end
         end
+
+        aggregation :paper_types do
+          terms do
+            field 'paper_type'
+          end
+        end
+
       end
       puts @search_definition.to_hash
       __elasticsearch__.search(@search_definition)
+    end
+
+    def reset_index!
+      __elasticsearch__.create_index! force: true
+      all.each {|p| p.__elasticsearch__.index_document }
     end
 
   end
