@@ -15,6 +15,7 @@ class Paper < ActiveRecord::Base
       indexes :content, type: :string
       indexes :resolution, type: :string
       indexes :paper_type, type: :string, index: :not_analyzed
+      indexes :originator, type: :string, index: :not_analyzed
     end
   end  
 
@@ -59,6 +60,12 @@ class Paper < ActiveRecord::Base
         aggregation :paper_types do
           terms do
             field 'paper_type'
+          end
+        end
+
+        aggregation :originators do
+          terms do
+            field 'originator'
           end
         end
 
