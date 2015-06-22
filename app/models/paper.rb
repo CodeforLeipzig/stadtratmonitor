@@ -43,17 +43,32 @@ class Paper < ActiveRecord::Base
     # use DSL to define search queries
     # see https://github.com/elastic/elasticsearch-ruby/tree/master/elasticsearch-dsl
     # and https://github.com/elastic/elasticsearch-rails/tree/master/elasticsearch-rails/lib/rails/templates
-    def search(q)
+    def search(q, options={})
       @search_definition = Elasticsearch::DSL::Search.search do
 
         query do
-          unless q.blank?
-            multi_match do
-              query q
-              fields ["name", "content"]
+          filtered do
+
+            query do
+              # search query
+              unless q.blank?
+                multi_match do
+                  query q
+                  fields ["name", "content"]
+                end
+              else
+                match_all
+              end
             end
-          else
-            match_all
+
+            # filters
+            filter do
+              bool do
+                must { term paper_type: options[:paper_type] } if options[:paper_type]
+                must { match_all } unless options[:paper_type]
+              end
+            end
+
           end
         end
 
@@ -70,7 +85,7 @@ class Paper < ActiveRecord::Base
         end
 
       end
-      puts @search_definition.to_hash
+      Rails.logger.debug "Query: #{@search_definition.to_json}"
       __elasticsearch__.search(@search_definition)
     end
 
