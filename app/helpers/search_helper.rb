@@ -4,7 +4,7 @@ module SearchHelper
     content_tag(:ul) do
       facets.each do |facet|
         concat content_tag(:li,
-                           "#{facet['key']} (#{facet['doc_count']})",
+                           "#{facet.term} (#{facet.count})",
                            class: "facet"
                           )
       end
