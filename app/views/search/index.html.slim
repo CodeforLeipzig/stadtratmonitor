@@ -1,17 +1,13 @@
 div
   = render 'search/form'
 
-.row
-  .small-4.columns
-    ul
-    - @paper_type_facets.each do |paper_type, count|
-      li.facet
-        = "#{paper_type} (#{count})"
-  .small-4.columns.end
-    ul
-    - @originator_facets.each do |originator, count|
-      li.facet
-        = "#{originator} (#{count})"
+
+- if params[:q].present?
+  .row
+    .small-4.columns
+      = facet_list(@paper_type_facets)
+    .small-4.columns.end
+      = facet_list(@originator_facets)
 
 .clearfix
   - if params[:q].present?
