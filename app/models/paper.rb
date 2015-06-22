@@ -47,42 +47,52 @@ class Paper < ActiveRecord::Base
       @search_definition = Elasticsearch::DSL::Search.search do
 
         query do
-          filtered do
-
-            query do
-              # search query
-              unless q.blank?
-                multi_match do
-                  query q
-                  fields ["name", "content"]
-                end
-              else
-                match_all
-              end
+          # search query
+          unless q.blank?
+            multi_match do
+              query q
+              fields ["name", "content"]
             end
+          else
+            match_all
+          end
+        end
 
-            # filters
-            filter do
-              bool do
-                must { term paper_type: options[:paper_type] } if options[:paper_type].present?
-                must { term originator: options[:originator] } if options[:originator].present?
-                # catchall when no filters set
-                must { match_all } if options.keys.none? {|k| [:paper_type, :originator].include?(k) }
-              end
-            end
-
+        # apply filter after aggregations
+        post_filter do
+          bool do
+            must { term paper_type: options[:paper_type] } if options[:paper_type].present?
+            must { term originator: options[:originator] } if options[:originator].present?
+            # catchall when no filters set
+            must { match_all } if options.keys.none? {|k| [:paper_type, :originator].include?(k) }
           end
         end
 
         aggregation :paper_types do
-          terms do
-            field 'paper_type'
+          # filter by originator
+          f = Elasticsearch::DSL::Search::Filters::Bool.new
+          f.must { match_all }
+          f.must { term originator: options[:originator] } if options[:originator].present?
+          filter f.to_hash do
+            aggregation :paper_types do
+              terms do
+                field 'paper_type'
+              end
+            end
           end
         end
 
         aggregation :originators do
-          terms do
-            field 'originator'
+          # filter by paper_type
+          f = Elasticsearch::DSL::Search::Filters::Bool.new
+          f.must { match_all }
+          f.must { term paper_type: options[:paper_type] } if options[:paper_type].present?
+          filter f.to_hash do
+            aggregation :originators do
+              terms do
+                field 'originator'
+              end
+            end
           end
         end
 
