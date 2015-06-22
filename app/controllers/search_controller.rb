@@ -1,3 +1,10 @@
+SearchFacet = Struct.new("SearchFacet", :term, :count) do
+  def term_with_count
+    "#{term} (#{count})"
+  end
+end
+
+
 class SearchController < ApplicationController
   def index
     @paper_type = params[:paper_type]
@@ -16,9 +23,8 @@ class SearchController < ApplicationController
 
   def extract_facets(name)
     @response.
-      response['aggregations'][name.to_s]['buckets'].
-      # rewrite key => term, doc_count => count
-      map {|m| Hashie::Mash.new term: m['key'], count: m['doc_count'] }
+      response['aggregations'][name.to_s][name.to_s]['buckets'].
+      map {|m| SearchFacet.new(m['key'], m['doc_count'])}
   end
 
 end

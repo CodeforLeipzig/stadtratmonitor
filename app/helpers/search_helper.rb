@@ -16,7 +16,7 @@ module SearchHelper
       concat(label name, desc)
       concat(
         select_tag name,
-          options_from_collection_for_select(facets, :term, :term, selected),
+          options_from_collection_for_select(facets, :term, :term_with_count, selected),
           include_blank: true,
           onchange: "this.form.submit();"
       )
