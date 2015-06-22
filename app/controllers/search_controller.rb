@@ -4,6 +4,8 @@ class SearchController < ApplicationController
     @originator = params[:originator]
     options = params.slice(:paper_type, :originator)
 
+    @show_filters = true
+
     @response = Paper.search(params[:q], options)
     @papers = @response.page(params[:page]).results
     @paper_type_facets = extract_facets('paper_types')

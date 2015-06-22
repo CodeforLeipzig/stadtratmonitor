@@ -10,4 +10,17 @@ module SearchHelper
       end
     end
   end
+
+  def filter_select(name, desc, facets, selected)
+    capture do
+      concat(label name, desc)
+      concat(
+        select_tag name,
+          options_from_collection_for_select(facets, :term, :term, selected),
+          include_blank: true,
+          onchange: "this.form.submit();"
+      )
+    end
+  end
+
 end

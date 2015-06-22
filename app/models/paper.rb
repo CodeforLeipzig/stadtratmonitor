@@ -64,8 +64,8 @@ class Paper < ActiveRecord::Base
             # filters
             filter do
               bool do
-                must { term paper_type: options[:paper_type] } if options[:paper_type]
-                must { term originator: options[:originator] } if options[:originator]
+                must { term paper_type: options[:paper_type] } if options[:paper_type].present?
+                must { term originator: options[:originator] } if options[:originator].present?
                 # catchall when no filters set
                 must { match_all } if options.keys.none? {|k| [:paper_type, :originator].include?(k) }
               end
