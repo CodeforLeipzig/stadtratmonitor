@@ -19,6 +19,14 @@ class Paper < ActiveRecord::Base
     end
   end  
 
+  def split_originator
+    originator.split(/\d\.\s/).reject {|s| s.blank?} || originator
+  end
+
+  def as_indexed_json(options={})
+    as_json.merge(originator: split_originator)
+  end
+
   class << self
     def import_from_json(json_string)
       old_count = count
