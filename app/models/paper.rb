@@ -11,9 +11,9 @@ class Paper < ActiveRecord::Base
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: false do
-      indexes :name, type: :string
-      indexes :content, type: :string
-      indexes :resolution, type: :string
+      indexes :name, type: :string, analyzer: "german"
+      indexes :content, type: :string, analyzer: "german"
+      indexes :resolution, type: :string, analyzer: "german"
       indexes :paper_type, type: :string, index: :not_analyzed
       indexes :originator, type: :string, index: :not_analyzed
     end
