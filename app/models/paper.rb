@@ -5,7 +5,8 @@ class Paper < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  validates_presence_of :body, :content, :name, :originator, :paper_type, :published_at, :reference, :url
+  validates_presence_of :body, :content, :name, :originator, :paper_type, :reference, :url
+  validates_presence_of :published_at, allow_nil: true
   validates :url, uniqueness: true
 
   class << self
