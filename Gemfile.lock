@@ -68,6 +68,11 @@ GEM
       multi_json
     erubis (2.7.0)
     execjs (2.5.2)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     foundation-rails (5.5.1.2)
@@ -113,6 +118,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -197,6 +204,7 @@ DEPENDENCIES
   elasticsearch
   elasticsearch-dsl
   elasticsearch-model
+  factory_girl_rails
   foundation-rails
   jquery-rails
   kaminari
@@ -205,6 +213,7 @@ DEPENDENCIES
   omniauth
   omniauth-browserid
   pry
+  quiet_assets
   rails
   rails-i18n
   sass-rails
