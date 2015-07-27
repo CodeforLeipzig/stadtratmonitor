@@ -21,4 +21,4 @@ Adding a scraper manually:
 2. `Import.create(url: "https://api.morph.io/[scraper]/data.json?key=[api_key]&query=[sql]")`
 3. `exit`
 
-Now import everything via `bundle exec rake import_papers:from_morph`.
+Now import everything via `bundle exec rake import_papers`.
