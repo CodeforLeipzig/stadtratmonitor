@@ -5,8 +5,7 @@ class Paper < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  validates_presence_of :body, :content, :name, :originator, :paper_type, :reference, :url
-  validates_presence_of :published_at, allow_nil: true
+  validates_presence_of :body, :content, :name , :originator, :paper_type, :reference, :url, :published_at
   validates :url, uniqueness: true
 
   settings index: { number_of_shards: 1 } do
@@ -17,7 +16,7 @@ class Paper < ActiveRecord::Base
       indexes :paper_type, type: :string, index: :not_analyzed
       indexes :originator, type: :string, index: :not_analyzed
     end
-  end  
+  end
 
   def split_originator
     originator.split(/\d\.\s/).reject {|s| s.blank?} || originator
