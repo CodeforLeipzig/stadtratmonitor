@@ -1,2 +1,5 @@
 de:
-  hello: 'Hallo'
+  errors:
+    messages:
+      unparseable_date: "ist kein gültiges Datum"
+      url: "ist keine gültige URL"

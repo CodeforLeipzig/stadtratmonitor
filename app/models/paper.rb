@@ -1,12 +1,23 @@
 require 'elasticsearch/model'
 require 'json'
+require 'parseable_date_validator'
 
 class Paper < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  validates_presence_of :body, :content, :name , :originator, :paper_type, :reference, :url, :published_at
-  validates :url, uniqueness: true
+  validates :name,         presence: true, length: { maximum: 1000 }
+  validates :url,          presence: true,
+                           length: { maximum: 1000 },
+                           uniqueness: true, # TODO use unique index instead
+                           url: true
+  validates :reference,    presence: true, length: { maximum: 100 }
+  validates :body,         presence: true, length: { maximum: 100 }
+  validates :content,      presence: true, length: { maximum: 100_000 }
+  validates :originator,   presence: true, length: { maximum: 300 }
+  validates :paper_type,   presence: true, length: { maximum: 50 }
+  validates :published_at, presence: true, parseable_date: true
+  validates :resolution,   length: { maximum: 30_000 }
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: false do
