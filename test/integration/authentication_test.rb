@@ -6,11 +6,11 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     fill_in 'Name', with: 'me'
     fill_in 'Email', with: 'user@example.com'
     click_button 'Sign In'
-    assert_equal '/', current_path
+    assert_equal '/leipzig', current_path
     assert_is_signed_in
 
     click_link 'Abmelden'
-    assert_equal '/', current_path
+    assert_equal '/leipzig', current_path
     assert_is_signed_out
   end
 
