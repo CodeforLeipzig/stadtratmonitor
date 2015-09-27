@@ -24,6 +24,8 @@ gem 'turbolinks'
 # Assets
 gem 'foundation-rails'
 
+gem 'validate_url'
+
 # Authentication
 gem 'omniauth'
 gem 'omniauth-browserid'
@@ -63,4 +65,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
