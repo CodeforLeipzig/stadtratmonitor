@@ -61,10 +61,9 @@ class Paper < ActiveRecord::Base
     # use DSL to define search queries
     # see https://github.com/elastic/elasticsearch-ruby/tree/master/elasticsearch-dsl
     # and https://github.com/elastic/elasticsearch-rails/tree/master/elasticsearch-rails/lib/rails/templates
-    def search(q, options={})
-      @search_definition = PaperSearch.definition(q, options)
-      Rails.logger.debug "Query: #{@search_definition.to_json}"
-      __elasticsearch__.search(@search_definition)
+    def search(search_definition)
+      Rails.logger.debug "Query: #{search_definition.to_json}"
+      __elasticsearch__.search(search_definition)
     end
 
     def reset_index!

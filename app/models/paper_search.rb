@@ -1,5 +1,14 @@
 class PaperSearch
 
+  include ActiveModel::Model
+
+  attr_accessor :query, :paper_type, :originator, :sort_by
+
+  def to_hash
+    options = {paper_type: @paper_type, originator: @originator, sort_by: @sort_by}
+    PaperSearch.definition(@query, options)
+  end
+
   def self.definition(q, options={})
     Elasticsearch::DSL::Search.search do
 
@@ -28,7 +37,7 @@ class PaperSearch
           must { term paper_type: options[:paper_type] } if options[:paper_type].present?
           must { term originator: options[:originator] } if options[:originator].present?
           # catchall when no filters set
-          must { match_all } if options.keys.none? {|k| [:paper_type, :originator].include?(k) }
+          must { match_all } unless (options[:paper_type].present? || options[:originator].present?)
         end
       end
 
