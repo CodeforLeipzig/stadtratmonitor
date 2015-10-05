@@ -40,10 +40,12 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 group :development do
   gem 'spring'
   gem 'quiet_assets'
+  gem 'awesome_print'
 end
 
 group :development, :test do
   gem 'pry'
+  gem 'pry-rails'
   gem 'capybara'
   gem 'launchy'
 end
