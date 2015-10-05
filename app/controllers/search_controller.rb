@@ -9,7 +9,8 @@ class SearchController < ApplicationController
   def index
     @paper_type = params[:paper_type]
     @originator = params[:originator]
-    options = params.slice(:paper_type, :originator)
+    
+    options = params.slice(:paper_type, :originator, :sort_by)
 
     @show_filters = true
 
