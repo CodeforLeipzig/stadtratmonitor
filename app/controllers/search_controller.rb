@@ -7,14 +7,12 @@ end
 
 class SearchController < ApplicationController
   def index
-    @paper_type = params[:paper_type]
-    @originator = params[:originator]
-    
-    options = params.slice(:paper_type, :originator, :sort_by)
+    @search_definition = PaperSearch.new(query: params[:q],
+                                         paper_type: params[:paper_type],
+                                         originator: params[:originator],
+                                         sort_by: params[:sort_by])
 
-    @show_filters = true
-
-    @response = Paper.search(params[:q], options)
+    @response = Paper.search(@search_definition)
     @papers = @response.page(params[:page]).results
     @paper_type_facets = extract_facets('paper_types')
     @originator_facets = extract_facets('originators')
