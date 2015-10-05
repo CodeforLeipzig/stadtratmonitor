@@ -26,6 +26,8 @@ div
         small = doc.originator
         '
         small = l doc.published_at.to_date
+        '
+        small = doc._score
         = link_to doc.url, target: '_blank' do
           div = doc.name
 
