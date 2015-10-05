@@ -6,5 +6,11 @@
       .row
         .small-4.columns
           = filter_select("paper_type", "Typ", @paper_type_facets, @paper_type)
-        .small-4.columns.end
+        .small-4.columns
           = filter_select("originator", "Einreicher", @originator_facets, @originator)
+        .small-4.columns.end
+          label Sortierung
+          input type="radio" name="sort_by" value="date" id="sort_by_date"
+          label for="sort_by_date" Nach Datum
+          input type="radio" name="sort_by" value="score" id="sort_by_score"
+          label for="sort_by_score" Nach Relevanz
