@@ -10,7 +10,9 @@ class SearchController < ApplicationController
     @search_definition = PaperSearch.new(query: params[:q],
                                          paper_type: params[:paper_type],
                                          originator: params[:originator],
-                                         sort_by: params[:sort_by])
+                                         sort_by: params[:paper_search][:sort_by])
+
+   # @search = PaperSearch.new params[:paper_search]
 
     @response = Paper.search(@search_definition)
     @papers = @response.page(params[:page]).results
