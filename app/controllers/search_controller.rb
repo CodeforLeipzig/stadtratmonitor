@@ -7,16 +7,30 @@ end
 
 class SearchController < ApplicationController
   def index
-    @search_definition = PaperSearch.new(params[:paper_search])
+    @search_definition = params[:paper_search].present? ? PaperSearch.new(search_params) : PaperSearch.new
     @search_definition.sort_by ||= "score"
 
-    @response = Paper.search(@search_definition)
+    execute_search
+  end
+
+  def show
+    @search_definition = PaperSearch.find params[:id]
+    execute_search
+    render action: "index"
+  end
+
+  private
+
+  def execute_search
+    @response = Paper.search(@search_definition.to_definition)
     @papers = @response.page(params[:page]).results
     @paper_type_facets = extract_facets('paper_types')
     @originator_facets = extract_facets('originators')
   end
 
-  private
+  def search_params
+    params.require(:paper_search).permit(:query, :paper_type, :originator, :sort_by)
+  end
 
   def extract_facets(name)
     @response.
