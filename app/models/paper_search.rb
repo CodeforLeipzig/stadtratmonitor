@@ -1,12 +1,8 @@
-class PaperSearch
+class PaperSearch < ActiveRecord::Base
 
-  include ActiveModel::Model
-
-  attr_accessor :query, :paper_type, :originator, :sort_by
-
-  def to_hash
-    options = {paper_type: @paper_type, originator: @originator, sort_by: @sort_by}
-    PaperSearch.definition(@query, options)
+  def to_definition
+    options = {paper_type: paper_type, originator: originator, sort_by: sort_by}
+    PaperSearch.definition(query, options)
   end
 
   def self.definition(q, options={})

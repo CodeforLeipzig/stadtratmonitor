@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root to: redirect { |path_params| "/leipzig" }
 
   scope ':body' do
-    get '/' => 'search#index', as: :search
+    get '/'    => 'search#index', as: :search
+    get '/:id' => 'search#show', as: :saved_search
   end
 
   post '/auth/:provider/callback', to: 'sessions#create'
