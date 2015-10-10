@@ -7,12 +7,8 @@ end
 
 class SearchController < ApplicationController
   def index
-    @search_definition = PaperSearch.new(query: params[:q],
-                                         paper_type: params[:paper_type],
-                                         originator: params[:originator],
-                                         sort_by: params[:paper_search][:sort_by])
-
-   # @search = PaperSearch.new params[:paper_search]
+    @search_definition = PaperSearch.new(params[:paper_search])
+    @search_definition.sort_by ||= "score"
 
     @response = Paper.search(@search_definition)
     @papers = @response.page(params[:page]).results

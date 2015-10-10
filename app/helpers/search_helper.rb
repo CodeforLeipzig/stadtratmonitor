@@ -11,14 +11,14 @@ module SearchHelper
     end
   end
 
-  def filter_select(name, desc, facets, selected)
+  def filter_select(builder, name, desc, facets, selected)
     capture do
       concat(label name, desc)
       concat(
-        select_tag name,
+        builder.select name,
           options_from_collection_for_select(facets, :term, :term_with_count, selected),
-          include_blank: true,
-          onchange: "this.form.submit();"
+          { include_blank: true },
+          { onchange: "this.form.submit();" }
       )
     end
   end
