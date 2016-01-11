@@ -54,6 +54,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'faker'
+  gem 'simplecov', require: false
 end
 
 # Use ActiveModel has_secure_password
