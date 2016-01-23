@@ -1,0 +1,12 @@
+web:
+  build: .
+  volumes:
+    - .:/app
+  ports:
+    - "3000:3000"
+  links:
+    - elasticsearch
+  environment:
+    ELASTICSEARCH_URL: 'http://elasticsearch:9200'
+elasticsearch:
+  image: elasticsearch:1.7
