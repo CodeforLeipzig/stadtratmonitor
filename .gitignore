@@ -16,3 +16,4 @@
 /tmp
 config/morph.yml
 /coverage
+.vagrant
