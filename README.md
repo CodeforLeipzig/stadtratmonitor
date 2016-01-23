@@ -8,7 +8,13 @@
 1. Start Rails server: `bundle exec rails s`
 1. Visit [http://localhost:3000](http://localhost:3000)
 
-TODOs: https://github.com/ahx/stadtratmonitor/issues
+### Using docker
+
+1. Install docker and docker-compose: https://docs.docker.com/compose/install/
+1. Start the app: `docker-compose up`
+1. TODO db:migrate, import data, setup index
+1. Get the address of the docker host: `docker-machine ip default`
+1. Point your browser to: 'http://<IP of docker host>:3000'
 
 ## Adding a data source (web scraper)
 Example scraper: https://morph.io/ahx/city_council_leipzig_recent_papers
