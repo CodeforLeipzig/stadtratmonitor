@@ -14,7 +14,7 @@
 1. Start the app: `docker-compose up`
 1. TODO db:migrate, import data, setup index
 1. Get the address of the docker host: `docker-machine ip default`
-1. Point your browser to: 'http://<IP of docker host>:3000'
+1. Point your browser to: 'http://\<IP of docker host\>:3000'
 
 ## Adding a data source (web scraper)
 Example scraper: https://morph.io/ahx/city_council_leipzig_recent_papers
