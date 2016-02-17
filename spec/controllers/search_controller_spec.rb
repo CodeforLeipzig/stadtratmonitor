@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SearchController, type: :controller do
+RSpec.describe SearchController, type: :controller, elasticsearch: true do
 
   describe "GET #index" do
     it "returns http success" do
