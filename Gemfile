@@ -42,6 +42,8 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'quiet_assets'
   gem 'awesome_print'
+  gem 'guard-rspec', require: false
+  gem 'terminal-notifier-guard' # FIXME cross-platform
 end
 
 group :development, :test do
