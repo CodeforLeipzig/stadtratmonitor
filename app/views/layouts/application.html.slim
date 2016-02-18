@@ -1,20 +1,20 @@
 doctype html
 html
-head
-  title Stadtratmonitor Leipzig
-  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-  = javascript_include_tag 'vendor/modernizr'
-  = csrf_meta_tags
+  head
+    title Stadtratmonitor Leipzig
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'vendor/modernizr'
+    = csrf_meta_tags
 
-body
-  .row
-    .small-12.columns
-      .clearfix
-        .right = render 'login_button'
-      h1#title = link_to 'Stadtratmonitor Leipzig', root_path
-      - flash.each do |name, msg|
-        = content_tag :div, msg, class: name
-      = yield
+  body
+    .row
+      .small-12.columns
+        .clearfix
+          .right = render 'login_button'
+        h1#title = link_to 'Stadtratmonitor Leipzig', root_path
+        - flash.each do |name, msg|
+          = content_tag :div, msg, class: name
+        = yield
 
-  script src="https://login.persona.org/include.js"
-  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    script src="https://login.persona.org/include.js"
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
