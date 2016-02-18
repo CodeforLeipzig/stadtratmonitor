@@ -205,6 +205,8 @@ GEM
       slim (~> 3.0)
     slop (3.6.0)
     spring (1.3.4)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     sprockets (3.0.2)
       rack (~> 1.0)
     sprockets-rails (2.2.4)
@@ -260,6 +262,7 @@ DEPENDENCIES
   simplecov
   slim-rails
   spring
+  spring-commands-rspec
   sqlite3
   turbolinks
   uglifier
