@@ -19,6 +19,14 @@ RSpec.describe SearchController, type: :controller, elasticsearch: true do
       expect(response).to render_template(:index)
     end
 
+    it "executes the search with PaperSearch parameters" do
+      result_page = double("page", results: []) # MEH
+      response = double("es_response", page: result_page)
+      expect(Paper).to receive(:search).and_return(response)
+
+      get :index, body: 'leipzig'
+    end
+
   end
 
 end
