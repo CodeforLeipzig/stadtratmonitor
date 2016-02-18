@@ -13,7 +13,7 @@ module SearchHelper
 
   def filter_select(builder, name, desc, facets, selected)
     capture do
-      concat(label name, desc)
+      concat(builder.label name, desc)
       concat(
         builder.select name,
           options_from_collection_for_select(facets, :term, :term_with_count, selected),
