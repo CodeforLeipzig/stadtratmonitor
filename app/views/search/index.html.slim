@@ -18,7 +18,7 @@ div
   - else
     | #{@papers.total} Dokumente in der Datenbank
 div
-  ul.no-bullet
+  ul.no-bullet#search_results
     - @papers.each do |doc|
       li.search-result
         small = doc.paper_type
