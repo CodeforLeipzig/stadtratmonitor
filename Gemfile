@@ -59,6 +59,7 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'faker'
   gem 'simplecov', require: false
+  gem 'test_after_commit' # TODO remove when moving to rails 5
 end
 
 # Use ActiveModel has_secure_password
