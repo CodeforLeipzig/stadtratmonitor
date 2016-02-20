@@ -20,4 +20,10 @@ module FactoryHelper
     PAPER_TYPES.sample
   end
 
+  REFERENCE = "A-%05i/16"
+
+  def self.reference(seq)
+    REFERENCE % seq
+  end
+
 end
