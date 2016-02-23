@@ -21,8 +21,7 @@ div
             span.originator = doc.originator
             '
             span.published = l doc.published_at.to_date
-            '
-            span.score = doc._score
+            /! score: #{doc._score}
 
 div
   = paginate @papers
