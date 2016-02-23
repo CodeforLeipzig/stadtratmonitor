@@ -25,4 +25,14 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
     expect(page).to have_content("#{@papers.size} Dokumente in der Datenbank")
   end
 
+  scenario "Search results have basic information" do
+    visit search_path body: "leipzig"
+    paper = @papers.first
+    result = page.find("li.search-result", match: :first)
+    expect(result).to have_link(paper.name, href: paper.url)
+    expect(result).to have_css("span.paper_type", text: paper.paper_type)
+    expect(result).to have_css("span.originator", text: paper.originator)
+    expect(result).to have_css("span.published", text: I18n.l(paper.published_at.to_date))
+  end
+
 end
