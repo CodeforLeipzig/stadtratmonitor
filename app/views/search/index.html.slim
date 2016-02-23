@@ -1,14 +1,6 @@
 div
   = render 'search/form'
 
-
-- if false # params[:q].present?
-  .row
-    .small-4.columns
-      = facet_list(@paper_type_facets)
-    .small-4.columns.end
-      = facet_list(@originator_facets)
-
 .clearfix
   - if params[:q].present?
     .left
@@ -21,15 +13,16 @@ div
   ul.no-bullet#search_results
     - @papers.each do |doc|
       li.search-result
-        small = doc.paper_type
-        '
-        small = doc.originator
-        '
-        small = l doc.published_at.to_date
-        '
-        small = doc._score
-        = link_to doc.url, target: '_blank' do
-          div = doc.name
+        article
+          h4 = link_to doc.name, doc.url, target: '_blank'
+          div.metainfo
+            span.paper_type = doc.paper_type
+            '
+            span.originator = doc.originator
+            '
+            span.published = l doc.published_at.to_date
+            '
+            span.score = doc._score
 
 div
   = paginate @papers
