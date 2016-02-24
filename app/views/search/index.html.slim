@@ -23,5 +23,5 @@ div
             span.published = l doc.published_at.to_date
             /! score: #{doc._score}
 
-div
+div#pagination
   = paginate @papers

@@ -18,11 +18,29 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
     expect(page).to have_field("paper_search_sort_by_score", type: "radio")
   end
 
-  scenario "It displays a list of search results" do
+  scenario "With empty query displays all documents" do
     visit search_path body: "leipzig"
     expect(page).to have_selector("ul#search_results")
-    expect(page).to have_css("li.search-result", count: 10)
     expect(page).to have_content("#{@papers.size} Dokumente in der Datenbank")
+  end
+
+  scenario "Search results are paginated" do
+    visit search_path body: "leipzig"
+    expect(page).to have_css("li.search-result", count: 10)
+    expect(page).to have_css("div#pagination")
+    within("div#pagination") do
+      expect(page).to have_css("li", count: 4) # two pages + next + last
+      expect(page).to have_css("li.current", text: "1")
+      expect(page).to have_link("2")
+      expect(page).to have_link("Weiter")
+      expect(page).to have_link("Ende")
+    end
+
+    page.find("div#pagination").click_link("2")
+    expect(page).to have_css("li.search-result", count: 1)
+    within("div#pagination") do
+      expect(page).to have_css("li.current", text: "2")
+    end
   end
 
   scenario "Search results have basic information" do
