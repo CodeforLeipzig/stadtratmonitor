@@ -43,7 +43,7 @@ group :development do
   gem 'quiet_assets'
   gem 'awesome_print'
   gem 'guard-rspec', require: false
-  gem 'terminal-notifier-guard' # FIXME cross-platform
+  # gem 'terminal-notifier-guard' # FIXME cross-platform
 end
 
 group :development, :test do
