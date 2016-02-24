@@ -19,6 +19,8 @@ class Paper < ActiveRecord::Base
   validates :published_at, presence: true, parseable_date: true
   validates :resolution,   length: { maximum: 30_000 }
 
+  index_name ['srm', Rails.env, self.base_class.to_s.pluralize.underscore].join('_')
+
   settings index: { number_of_shards: 1 } do
     mappings dynamic: false do
       indexes :name, type: :string, analyzer: "german"

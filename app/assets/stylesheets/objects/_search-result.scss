@@ -1,4 +1,17 @@
 .search-result {
-  border-bottom: 1px solid $table-border-color;
-  padding-bottom: 0.25em;
+  margin-bottom: 1.2em;
+}
+
+.search-result article {
+  line-height: normal;
+}
+
+.search-result h4 {
+  line-height: normal;
+  font-size: 1.2rem;
+  margin-bottom: 0.1rem;
+}
+
+.search-result .metainfo {
+  font-size: 0.8rem;
 }

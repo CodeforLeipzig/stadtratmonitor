@@ -39,11 +39,15 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :development do
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'quiet_assets'
   gem 'awesome_print'
+  gem 'guard-rspec', require: false
+  # gem 'terminal-notifier-guard' # FIXME cross-platform
 end
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
   gem 'pry'
   gem 'pry-rails'
   gem 'capybara'
@@ -52,9 +56,11 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'shoulda'
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'faker'
   gem 'simplecov', require: false
+  gem 'test_after_commit' # TODO remove when moving to rails 5
+  gem 'database_cleaner'
 end
 
 # Use ActiveModel has_secure_password

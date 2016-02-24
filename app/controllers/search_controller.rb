@@ -7,7 +7,7 @@ end
 
 class SearchController < ApplicationController
   def index
-    @search_definition = params[:paper_search].present? ? PaperSearch.new(search_params) : PaperSearch.new
+    @search_definition = PaperSearch.new(search_params)
     @search_definition.sort_by ||= "score"
 
     execute_search
@@ -29,7 +29,7 @@ class SearchController < ApplicationController
   end
 
   def search_params
-    params.require(:paper_search).permit(:query, :paper_type, :originator, :sort_by)
+    params.fetch(:paper_search, {}).permit(:query, :paper_type, :originator, :sort_by)
   end
 
   def extract_facets(name)
