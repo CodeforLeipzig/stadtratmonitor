@@ -60,6 +60,7 @@ group :test do
   gem 'faker'
   gem 'simplecov', require: false
   gem 'test_after_commit' # TODO remove when moving to rails 5
+  gem 'database_cleaner'
 end
 
 # Use ActiveModel has_secure_password
