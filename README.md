@@ -28,3 +28,5 @@ Adding a scraper manually:
 3. `exit`
 
 Now import everything via `bundle exec rake import_papers`.
+
+[![Build Status](https://travis-ci.org/joergreichert/stadtratmonitor.png?branch=travis-docker)](https://travis-ci.org/joergreichert/stadtratmonitor)
