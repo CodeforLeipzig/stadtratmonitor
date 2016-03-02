@@ -1,10 +1,17 @@
 # Stadtratmonitor
 
+[![Build Status](https://travis-ci.org/CodeforLeipzig/stadtratmonitor.png?branch=master)](https://travis-ci.org/CodeforLeipzig/stadtratmonitor)
+
 ## Setup
 
+There are two ways to run this app: using a local development setup, or using
+docker.
+
+### Local machine setup
 1. Install Ruby, Bundler, Elasticsearch
 1. Start Elasticsearch: `elasticsearch`
 1. Setup Rails app: `bundle && bundle exec rake db:setup`
+1. See "Importing data" below
 1. Start Rails server: `bundle exec rails s`
 1. Visit [http://localhost:3000](http://localhost:3000)
 
@@ -12,21 +19,14 @@
 
 1. Install docker and docker-compose: https://docs.docker.com/compose/install/
 1. Start the app: `docker-compose up`
-1. TODO db:migrate, import data, setup index
+1. Initialize the database: `docker-compose run web rake db:setup`
+1. See "Importing data" below
 1. Get the address of the docker host: `docker-machine ip default`
 1. Point your browser to: 'http://\<IP of docker host\>:3000'
 
-## Adding a data source (web scraper)
-Example scraper: https://morph.io/ahx/city_council_leipzig_recent_papers
-
-Scrapers are stored inside the database (see "Importer" model). To Add a new scraper, you have to create a new Importer record and set it's url field to Morph.io's [API URL field](https://morph.io/documentation/api?scraper=ahx%2Fcity_council_leipzig_recent_papers).
-
-Adding a scraper manually:
-
-1. Start Rails console `bundle exec rails console`
-2. `Import.create(url: "https://api.morph.io/[scraper]/data.json?key=[api_key]&query=[sql]")`
-3. `exit`
-
-Now import everything via `bundle exec rake import_papers`.
-
-[![Build Status](https://travis-ci.org/CodeforLeipzig/stadtratmonitor.png?branch=master)](https://travis-ci.org/CodeforLeipzig/stadtratmonitor)
+### Importing data and building the index
+1. Currently an API key for morph is required:
+   `cp config/morph.yml.example config/morph.yml`
+   Edit the morph.yml file and insert the Morph API key
+1. Import the data from our scraper: `docker-compose run web rake import_papers`
+1. Build the elasticsearch index: `docker-compose run web rake index:rebuild`
