@@ -29,4 +29,4 @@ Adding a scraper manually:
 
 Now import everything via `bundle exec rake import_papers`.
 
-[![Build Status](https://travis-ci.org/joergreichert/stadtratmonitor.png?branch=travis-docker)](https://travis-ci.org/joergreichert/stadtratmonitor)
+[![Build Status](https://travis-ci.org/CodeforLeipzig/stadtratmonitor.png?branch=master)](https://travis-ci.org/CodeforLeipzig/stadtratmonitor)
