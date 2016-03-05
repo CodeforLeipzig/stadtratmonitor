@@ -4,6 +4,9 @@ language: ruby
 
 services:
   - docker
+  
+after_success:
+- CI=true TRAVIS=true coveralls --verbose
 
 script:
   - docker-compose run web rake db:setup
