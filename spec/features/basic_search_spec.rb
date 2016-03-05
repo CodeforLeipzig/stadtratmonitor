@@ -53,4 +53,25 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
     expect(result).to have_css("span.published", text: I18n.l(paper.published_at.to_date))
   end
 
+  scenario "Finds papers by name" do
+    paper = FactoryGirl.create(:paper, name: "Opendata als default")
+    Paper.__elasticsearch__.refresh_index!
+    visit search_path body: "leipzig", paper_search: {query: "Opendata"}
+    expect(page).to have_content("1 Dokument in der Datenbank")
+    result = page.find("li.search-result", match: :first)
+    expect(result).to have_link(paper.name, href: paper.url)
+  end
+
+  scenario "Finds papers by content" do
+    paper = FactoryGirl.create(:paper,
+                                name: "Opendata als default",
+                                content: "Alle Verwaltungsdokumente werden als Opendata veröffentlicht"
+                                )
+    Paper.__elasticsearch__.refresh_index!
+    visit search_path body: "leipzig", paper_search: {query: "Verwaltungsdokumente"}
+    expect(page).to have_content("1 Dokument in der Datenbank")
+    result = page.find("li.search-result", match: :first)
+    expect(result).to have_link(paper.name, href: paper.url)
+  end
+
 end

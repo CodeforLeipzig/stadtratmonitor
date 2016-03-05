@@ -8,7 +8,7 @@ div
     .right
       / button.button. TODO: Suche Abbonieren
   - else
-    | #{@papers.total} Dokumente in der Datenbank
+    | #{pluralize(@papers.total, "Dokument", "Dokumente")} in der Datenbank
 div
   ul.no-bullet#search_results
     - @papers.each do |doc|
