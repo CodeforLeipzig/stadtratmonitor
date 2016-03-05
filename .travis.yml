@@ -8,6 +8,3 @@ services:
 script:
   - docker-compose run web rake db:setup
   - docker-compose run web rspec 
-  
-after_success:
-  - CI=true TRAVIS=true coveralls --verbose
