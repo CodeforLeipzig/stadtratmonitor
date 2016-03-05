@@ -82,6 +82,7 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
+    ffi (1.9.10-x64-mingw32)
     formatador (0.2.5)
     foundation-rails (5.5.1.2)
       railties (>= 3.1.0)
@@ -134,6 +135,8 @@ GEM
     nenv (0.3.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    nokogiri (1.6.6.2-x64-mingw32)
+      mini_portile (~> 0.6.0)
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -148,6 +151,11 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry (0.10.1-x64-mingw32)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+      win32console (~> 1.3)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     quiet_assets (1.1.0)
@@ -247,6 +255,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     sqlite3 (1.3.10)
+    sqlite3 (1.3.10-x64-mingw32)
     temple (0.7.5)
     test_after_commit (0.4.2)
       activerecord (>= 3.2)
@@ -257,17 +266,21 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2015.7)
+      tzinfo (>= 1.0.0)
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     validate_url (1.0.2)
       activemodel (>= 3.0.0)
       addressable
+    win32console (1.3.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   awesome_print
@@ -303,5 +316,9 @@ DEPENDENCIES
   sqlite3
   test_after_commit
   turbolinks
+  tzinfo-data
   uglifier
   validate_url
+
+BUNDLED WITH
+   1.10.6

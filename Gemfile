@@ -34,6 +34,8 @@ gem 'elasticsearch'
 gem 'elasticsearch-model'
 gem 'elasticsearch-dsl'
 
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
@@ -61,6 +63,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'test_after_commit' # TODO remove when moving to rails 5
   gem 'database_cleaner'
+  gem 'coveralls', require: false
 end
 
 # Use ActiveModel has_secure_password
