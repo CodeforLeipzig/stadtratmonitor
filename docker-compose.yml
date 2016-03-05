@@ -8,6 +8,6 @@ web:
     - elasticsearch
   environment:
     ELASTICSEARCH_URL: 'http://elasticsearch:9200'
-  env_file: ${ENV_FILE}
+  env_file: ./.ci.env
 elasticsearch:
   image: elasticsearch:1.7

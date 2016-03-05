@@ -7,4 +7,4 @@ services:
   
 script:
   - docker-compose run web rake db:setup
-  - docker-compose -e ENV_FILE=./.ci.env run web rspec 
+  - docker-compose run web rspec 
