@@ -1,6 +1,6 @@
 # Stadtratmonitor
 
-[![Build Status](https://travis-ci.org/CodeforLeipzig/stadtratmonitor.png?branch=master)](https://travis-ci.org/CodeforLeipzig/stadtratmonitor)
+[![Build Status](https://travis-ci.org/CodeforLeipzig/stadtratmonitor.png?branch=master)](https://travis-ci.org/CodeforLeipzig/stadtratmonitor) [![Coverage Status](https://coveralls.io/repos/github/jrlover/stadtratmonitor/badge.svg?branch=master)](https://coveralls.io/github/jrlover/stadtratmonitor?branch=master) [![Code Climate](https://codeclimate.com/github/CodeforLeipzig/stadtratmonitor/badges/gpa.svg)](https://codeclimate.com/github/CodeforLeipzig/stadtratmonitor)
 
 ## Setup
 
