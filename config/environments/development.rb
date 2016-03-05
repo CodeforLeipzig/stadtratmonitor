@@ -34,4 +34,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # flush stdout in order to get logs in realtime
+  $stdout.sync = true
+
 end
