@@ -1,6 +1,3 @@
-require 'coveralls'
-Coveralls.merged!('rails')
-
 require 'simplecov'
 SimpleCov.start 'rails'
 
