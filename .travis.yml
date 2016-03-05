@@ -10,4 +10,4 @@ script:
   - docker-compose run web rspec 
   
 after_success:
-  - coveralls
+  - CI=true TRAVIS=true coveralls --verbose
