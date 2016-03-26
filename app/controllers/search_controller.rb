@@ -8,7 +8,7 @@ end
 class SearchController < ApplicationController
   def index
     @search_definition = PaperSearch.new(search_params)
-    @search_definition.sort_by ||= "score"
+    @search_definition.sort_by ||= "date"
 
     execute_search
   end
