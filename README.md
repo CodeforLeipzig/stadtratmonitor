@@ -6,21 +6,43 @@ The Stadtratmonitor Leipzig is a lightweight user interface for performing full 
 
 ### Sorting
  * Sort by date, paper was issued
+ 
 ![Papers sorted by publishing date](https://cloud.githubusercontent.com/assets/994131/14060246/b29c0356-f35e-11e5-837a-2106dd274694.JPG)
+
  * Sort by relevance, e.g. how often the search keyword appears inside the title resp. the content of the paper
+ 
 ![Papers sorted by relevance](https://cloud.githubusercontent.com/assets/994131/14060257/f7491002-f35e-11e5-9d39-f36b81c35c33.JPG)
+
 ### Filtering
  * By paper type
+ 
 ![Filter by paper type](https://cloud.githubusercontent.com/assets/994131/14060263/28c9d800-f35f-11e5-8c56-e8d208d85916.JPG)
+
  * By originator
+ 
 ![Filter by originator](https://cloud.githubusercontent.com/assets/994131/14060267/4fa539a6-f35f-11e5-981e-2467daf2dee2.JPG)
+
 ### Staying up-to-date
+#### General
  * Subscribing
-  * [Firefox RSS extension](https://addons.mozilla.org/en-US/firefox/addon/rss-feed-icon-in-navbar/)
   * [Google Chrome RSS extension](https://chrome.google.com/webstore/detail/rss-subscription-extensio/nlbjncdgjeocebhnmkbbbdekmmmcbfjd?hl=de)
+  * [Firefox RSS extension](https://addons.mozilla.org/en-US/firefox/addon/rss-feed-icon-in-navbar/)
  * Reading
   * [Google Chrome Extension](https://chrome.google.com/webstore/detail/rss-feed-reader/pnjaodmkngahhkoihejjehlcdlnohgmp)
-  * ...
+  * [Firefox Extension](https://addons.mozilla.org/en-US/firefox/addon/simple-rss-reader-srr)
+  * [RSSOWL](http://www.rssowl.org/)
+
+#### Example using Firefox and RSSOWL   
+Click on the newsfeed icon in the address bar
+![Abonnieren mit Firefox](https://cloud.githubusercontent.com/assets/994131/14060508/fe7f4514-f366-11e5-85ae-2fa2e50b91ea.JPG) 
+
+Copy the URL from the address bar
+![RSS URL in Firefox](https://cloud.githubusercontent.com/assets/994131/14060515/30140e98-f367-11e5-9c77-86ba626e3c1b.JPG)
+
+Create a new Feed in RSSOWL and paste the just copied URL in the form
+![RSSOWL Feed](https://cloud.githubusercontent.com/assets/994131/14060522/6c4a88ce-f367-11e5-8e0b-9d9f266306e2.JPG)
+
+When updating the feed in RSSOWL (or any other RSS reader of your choice) time after time all new papers matching the search query criteria will appear.
 
 [![Build Status](https://travis-ci.org/CodeforLeipzig/stadtratmonitor.png?branch=master)](https://travis-ci.org/CodeforLeipzig/stadtratmonitor) [![Coverage Status](https://coveralls.io/repos/github/CodeforLeipzig/stadtratmonitor/badge.svg?branch=master)](https://coveralls.io/github/CodeforLeipzig/stadtratmonitor?branch=master) [![Code Climate](https://codeclimate.com/github/CodeforLeipzig/stadtratmonitor/badges/gpa.svg)](https://codeclimate.com/github/CodeforLeipzig/stadtratmonitor)
 
