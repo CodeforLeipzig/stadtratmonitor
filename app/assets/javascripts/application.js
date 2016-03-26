@@ -17,18 +17,3 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
-
-$('[data-persona-login]').click(function(e) {
-  e.preventDefault();
-  navigator.id.get(function(assertion) {
-    if (assertion) {
-      if (assertion) {
-        var form = $('#browser-id-form');
-        form.find('input[name=assertion]').val(assertion);
-        form.submit();
-      } else {
-        // TODO: Handle failure
-      }
-    }
-  });
-});
