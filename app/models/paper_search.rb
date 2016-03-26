@@ -9,10 +9,10 @@ class PaperSearch < ActiveRecord::Base
     Elasticsearch::DSL::Search.search do
 
       sort do
-        if options[:sort_by] == 'date'
-          by :published_at, order: 'desc'
+        if options[:sort_by] == 'score'
+          by '_score'
         end
-        by '_score'
+        by :published_at, order: 'desc'
       end
 
       query do
