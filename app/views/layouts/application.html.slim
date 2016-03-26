@@ -11,11 +11,8 @@ html
     .row
       .small-12.columns
         .clearfix
-          .right = render 'login_button'
         h1#title = link_to 'Stadtratmonitor Leipzig', root_path
         - flash.each do |name, msg|
           = content_tag :div, msg, class: name
         = yield
 
-    script src="https://login.persona.org/include.js"
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
