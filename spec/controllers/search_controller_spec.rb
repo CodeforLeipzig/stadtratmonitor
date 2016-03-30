@@ -9,7 +9,7 @@ RSpec.describe SearchController, type: :controller, elasticsearch: true do
     end
 
     it "assigns @search_definition with default sort order" do
-      search = PaperSearch.new(sort_by: 'score')
+      search = PaperSearch.new(sort_by: 'date')
       get :index, body: 'leipzig'
       expect(assigns(:search_definition).attributes).to eq(search.attributes)
     end
