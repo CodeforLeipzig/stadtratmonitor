@@ -311,7 +311,7 @@ DEPENDENCIES
   elasticsearch-model
   factory_girl_rails
   faker
-  foundation-rails
+  foundation-rails (~> 5.5)
   guard-rspec
   jquery-rails
   kaminari

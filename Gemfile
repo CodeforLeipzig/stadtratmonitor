@@ -22,7 +22,7 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Assets
-gem 'foundation-rails'
+gem 'foundation-rails', '~> 5.5'
 
 gem 'validate_url'
 
