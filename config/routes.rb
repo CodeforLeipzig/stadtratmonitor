@@ -3,11 +3,11 @@ Rails.application.routes.draw do
 
   scope ':body' do
     get '/'    => 'search#index', as: :search
-    get '/:id' => 'search#show', as: :saved_search
   end
 
-  post '/auth/:provider/callback', to: 'sessions#create'
-  get '/auth/browser_id', as: 'sign_in'
+  scope '/a7d34068d8e22f75898ce838c0e59669bc047e46', :controller => :import do
+    post :new_papers_callback
+  end  
 
   resource :session, only: [:create, :destroy]
 
