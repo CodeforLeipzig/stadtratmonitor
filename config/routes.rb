@@ -5,9 +5,7 @@ Rails.application.routes.draw do
     get '/'    => 'search#index', as: :search
   end
 
-  scope '/a7d34068d8e22f75898ce838c0e59669bc047e46', :controller => :import do
-    post :new_papers_callback
-  end  
+  post '/import' => 'import#new_papers_callback'
 
   resource :session, only: [:create, :destroy]
 
