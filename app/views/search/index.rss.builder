@@ -13,11 +13,11 @@ xml.rss :version => "2.0" do
         if !doc.content.blank?
         	xml.description truncate(doc.content, length: 768)
         end
-	    if !doc.published_at
+	    if !doc.published_at.blank?
     	    xml.pubDate DateTime.parse(doc.published_at).strftime("%a, %d %b %Y %H:%M:%S %z")
         end
         doc.originator.each do |creator| 
-        	xml.dc_creator creator
+        	xml.'dc:creator' creator
         end
         if !doc.paper_type.blank?
 	        xml.category doc.paper_type
