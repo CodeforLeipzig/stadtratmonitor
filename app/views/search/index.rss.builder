@@ -17,7 +17,7 @@ xml.rss :version => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
     	    xml.pubDate DateTime.parse(doc.published_at).strftime("%a, %d %b %Y %H:%M:%S %z")
         end
         doc.originator.each do |originator| 
-        	xml.dc :creator originator
+        	xml.dc :creator, originator
         end
         if !doc.paper_type.blank?
 	        xml.category doc.paper_type
