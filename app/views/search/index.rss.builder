@@ -10,11 +10,21 @@ xml.rss :version => "2.0" do
     @papers.each do |doc|
       xml.item do
         xml.title doc.name
-        xml.description truncate(doc.content, length: 768)
-        xml.pubDate DateTime.parse(doc.published_at).to_date.to_s(:rfc822)
-        xml.creator doc.originator
-        xml.category doc.paper_type
-        xml.category doc.resolution
+        if !doc.content.blank?
+        	xml.description truncate(doc.content, length: 768)
+        end
+	    if !doc.published_at
+    	    xml.pubDate DateTime.parse(doc.published_at).rfc2822
+        end
+        doc.originator.each do |creator| 
+        	xml.creator creator
+        end
+        if !doc.paper_type.blank?
+	        xml.category doc.paper_type
+        end
+        if !doc.resolution.blank?
+        	xml.category doc.resolution
+        end
         xml.link doc.url
         xml.guid doc.url
       end
