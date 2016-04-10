@@ -5,7 +5,6 @@ xml.rss :version => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
   xml.channel do
     xml.title "Search results"
     xml.description "Papers matching search criteria"
-    xml.link root_url
 
     @papers.each do |doc|
       xml.item do
