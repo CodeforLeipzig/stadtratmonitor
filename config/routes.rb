@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 #  root to: redirect { |path_params| "/leipzig" }
 
-  get '/'    => 'search#index', as: :search
   post '/import' => 'import#new_papers_callback'
+  get '/'    => 'search#index', as: :search
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
