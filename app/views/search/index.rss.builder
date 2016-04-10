@@ -17,7 +17,7 @@ xml.rss :version => "2.0" do
     	    xml.pubDate DateTime.parse(doc.published_at).strftime("%a, %d %b %Y %H:%M:%S %z")
         end
         doc.originator.each do |creator| 
-        	xml.dc:creator creator
+        	xml['dc'].creator creator
         end
         if !doc.paper_type.blank?
 	        xml.category doc.paper_type
