@@ -12,7 +12,7 @@ xml.rss :version => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
         xml.title doc.name
         if !doc.content.blank?
         	xml.description do 
-        		xml.cdata! doc.content
+        		xml.cdata! truncate(doc.content, length: 768)
         	end
         end
 	    if !doc.published_at.blank?
