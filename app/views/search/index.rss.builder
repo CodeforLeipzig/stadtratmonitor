@@ -11,19 +11,27 @@ xml.rss :version => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
       xml.item do
         xml.title doc.name
         if !doc.content.blank?
-        	xml.description truncate(doc.content, length: 768)
+        	xml.description do 
+        		xml.cdata! truncate(doc.content, length: 768)
+        	end
         end
 	    if !doc.published_at.blank?
-    	    xml.pubDate DateTime.parse(doc.published_at).strftime("%a, %d %b %Y %H:%M:%S %z")
+    	    xml.pubDate DateTime.parse(doc.published_at).utc.strftime("%a, %d %b %Y %H:%M:%S %z")
         end
         doc.originator.each do |originator| 
-        	xml.dc :creator, originator
+        	xml.dc :creator do
+        		xml.cdata! originator
+        	end
         end
         if !doc.paper_type.blank?
-	        xml.category doc.paper_type
+	        xml.category do 
+	        	doc.paper_type
+	        end
         end
         if !doc.resolution.blank?
-        	xml.category doc.resolution
+        	xml.category do 
+        		xml.cdata! doc.resolution
+        	end
         end
         xml.link doc.url
         xml.guid doc.url
