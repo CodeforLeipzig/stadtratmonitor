@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   post '/import' => 'import#new_papers_callback'
   get '/'    => 'search#index', as: :search
+  
+  resource :session, only: [:create, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
