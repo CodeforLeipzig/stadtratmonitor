@@ -1,5 +1,9 @@
 # Stadtratmonitor
 
+[![Build Status](https://travis-ci.org/CodeforLeipzig/stadtratmonitor.png?branch=master)](https://travis-ci.org/CodeforLeipzig/stadtratmonitor) [![Coverage Status](https://coveralls.io/repos/github/CodeforLeipzig/stadtratmonitor/badge.svg?branch=master)](https://coveralls.io/github/CodeforLeipzig/stadtratmonitor?branch=master) [![Code Climate](https://codeclimate.com/github/CodeforLeipzig/stadtratmonitor/badges/gpa.svg)](https://codeclimate.com/github/CodeforLeipzig/stadtratmonitor)
+
+**Offical site:** https://stadtratmonitor.leipzig.codefor.de/
+
 ## Usage / Features
 
 The Stadtratmonitor Leipzig is a lightweight user interface for performing full text searches against paper contents issued to the city council of Leipzig. Note, this solution uses the data from [Ratsinformationssystem Leipzig](https://ratsinfo.leipzig.de/bi/allris.net.asp) that also offers [text search capabilities](https://ratsinfo.leipzig.de/bi/yw010.asp). 
@@ -40,11 +44,9 @@ Copy the URL from the address bar
 ![RSS URL in Firefox](https://cloud.githubusercontent.com/assets/994131/14060515/30140e98-f367-11e5-9c77-86ba626e3c1b.JPG)
 
 Create a new Feed in RSSOWL and paste the just copied URL in the form
-![RSSOWL Feed](https://cloud.githubusercontent.com/assets/994131/14060522/6c4a88ce-f367-11e5-8e0b-9d9f266306e2.JPG)
+![RSSOWL Feed](https://cloud.githubusercontent.com/assets/8532690/14472067/bbc5a64e-00f1-11e6-8e3e-551067b508e3.png)
 
 When updating the feed in RSSOWL (or any other RSS reader of your choice) time after time all new papers matching the search query criteria will appear.
-
-[![Build Status](https://travis-ci.org/CodeforLeipzig/stadtratmonitor.png?branch=master)](https://travis-ci.org/CodeforLeipzig/stadtratmonitor) [![Coverage Status](https://coveralls.io/repos/github/CodeforLeipzig/stadtratmonitor/badge.svg?branch=master)](https://coveralls.io/github/CodeforLeipzig/stadtratmonitor?branch=master) [![Code Climate](https://codeclimate.com/github/CodeforLeipzig/stadtratmonitor/badges/gpa.svg)](https://codeclimate.com/github/CodeforLeipzig/stadtratmonitor)
 
 ## Setup
 
