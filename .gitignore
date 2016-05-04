@@ -17,3 +17,4 @@
 config/morph.yml
 /coverage
 .vagrant
+/node_modules
