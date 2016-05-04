@@ -64,7 +64,7 @@ group :test do
   gem 'test_after_commit' # TODO remove when moving to rails 5
   gem 'database_cleaner'
   gem 'coveralls', require: false
-  gem 'poltergeist'
+  gem 'capybara-webkit'
 end
 
 # Use ActiveModel has_secure_password
