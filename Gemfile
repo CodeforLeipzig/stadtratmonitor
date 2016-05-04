@@ -22,7 +22,7 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Assets
-gem 'foundation-rails'
+gem 'foundation-rails', '~> 5.5'
 
 gem 'validate_url'
 
@@ -44,7 +44,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'quiet_assets'
   gem 'awesome_print'
-  gem 'guard-rspec', require: false
+  # gem 'guard-rspec', require: false
   # gem 'terminal-notifier-guard' # FIXME cross-platform
 end
 
@@ -64,7 +64,7 @@ group :test do
   gem 'test_after_commit' # TODO remove when moving to rails 5
   gem 'database_cleaner'
   gem 'coveralls', require: false
-  gem 'poltergeist'
+  gem 'capybara-webkit'
 end
 
 # Use ActiveModel has_secure_password

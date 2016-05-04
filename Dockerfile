@@ -1,8 +1,8 @@
 FROM ruby:2.2
-RUN apt-get update && apt-get install -y build-essential zlib1g-dev libsqlite3-dev nodejs nodejs-legacy npm
-
-RUN npm install phantomjs-prebuilt
-RUN ln -sf /node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs /usr/local/bin/
+RUN apt-get update && \
+  apt-get install -y build-essential zlib1g-dev libsqlite3-dev nodejs nodejs-legacy npm \
+  libxml2-dev libxslt1-dev pkg-config \
+  libqt4-webkit libqt4-dev xvfb
 
 RUN mkdir -p /app
 
@@ -10,6 +10,7 @@ WORKDIR /tmp
 
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
+RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle install
 
 ADD . /app
