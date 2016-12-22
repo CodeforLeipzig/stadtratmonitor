@@ -26,6 +26,7 @@ class Paper < ActiveRecord::Base
       indexes :name, type: :string, analyzer: "german"
       indexes :content, type: :string, analyzer: "german"
       indexes :resolution, type: :string, analyzer: "german"
+      indexes :reference, type: :string, index: :not_analyzed
       indexes :paper_type, type: :string, index: :not_analyzed
       indexes :published_at, type: :date, index: :not_analyzed
       indexes :originator, type: :string, index: :not_analyzed
