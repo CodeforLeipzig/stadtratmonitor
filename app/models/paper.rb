@@ -21,8 +21,36 @@ class Paper < ActiveRecord::Base
 
   index_name ['srm', Rails.env, self.base_class.to_s.pluralize.underscore].join('_')
 
-  settings index: { number_of_shards: 1 } do
-    mappings dynamic: false do
+  settings index: { 
+	  number_of_shards: 1,
+	  analysis: {
+		filter: {
+		  german_stop: {
+		    type: "stop",
+		    stopwords: "_german_"
+          }, 
+		  german_stemmer: {
+		    type: "stemmer",
+		    language: "light_german"
+          },
+		  decomp: {
+		    type: "decompound"
+          }
+        }, 
+		analyzer: {
+		  german: {
+		    tokenizer: "standard",
+		    filter: [
+		      "lowercase",
+		      "german_stop",
+		      "german_normalization",
+		      "german_stemmer",
+		      "decomp"
+		    ]
+          }
+        }
+      }
+    } do mappings dynamic: false do
       indexes :name, type: :string, analyzer: "german"
       indexes :content, type: :string, analyzer: "german"
       indexes :resolution, type: :string, analyzer: "german"
