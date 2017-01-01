@@ -13,10 +13,11 @@ div
       li.search-result
         article
           h4 = doc.name
-          ul
-            - @sub[doc.reference].each do |sub|
-              li class="#{'current' if sub.reference == doc.reference}"
-                div = link_to "#{l sub.published_at.to_date}: #{sub.paper_type} von #{sub.originator.join(", ")}", sub.url, target: '_blank'
+          - if @sub[doc.reference]
+            ul
+              - @sub[doc.reference].each do |sub|
+                li class="#{'current' if sub.reference == doc.reference}"
+                  div = link_to "#{l sub.published_at.to_date}: #{sub.paper_type} von #{sub.originator.join(", ")}", sub.url, target: '_blank'
               
 
 div#pagination

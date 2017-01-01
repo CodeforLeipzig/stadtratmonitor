@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pp'
 
 RSpec.feature "Basic search", type: :feature, elasticsearch: true do
 
@@ -46,11 +47,19 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   scenario "Search results have basic information" do
     visit search_path body: "leipzig"
     paper = @papers.first
-    result = page.find("li.search-result", match: :first)
-    expect(result).to have_link(paper.name, href: paper.url)
-    expect(result).to have_css("span.paper_type", text: paper.paper_type)
-    expect(result).to have_css("span.originator", text: paper.originator)
-    expect(result).to have_css("span.published", text: I18n.l(paper.published_at.to_date))
+    resultEntry = page.find("li.search-result", match: :first)
+    expect(resultEntry).to have_content(paper.name)
+
+    resultSubEntry = resultEntry.find("li.current", match: :first)
+    linkName = getLinkName(paper)
+    expect(resultSubEntry).to have_link(linkName, href: paper.url)
+  end
+
+  def getLinkName(paper)
+    dateStr = I18n.l(paper.published_at.to_date)
+    originatorStr = (paper.originator.kind_of?(Array) ?
+      paper.originator.join(", ") : paper.originator)
+    return "#{dateStr}: #{paper.paper_type} von #{originatorStr}"
   end
 
   scenario "Finds papers by name" do
@@ -58,8 +67,12 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "Opendata"}
     expect(page).to have_content("1 Dokument in der Datenbank")
-    result = page.find("li.search-result", match: :first)
-    expect(result).to have_link(paper.name, href: paper.url)
+    resultEntry = page.find("li.search-result", match: :first)
+    expect(resultEntry).to have_content(paper.name)
+
+    resultSubEntry = resultEntry.find("li.current", match: :first)
+    linkName = getLinkName(paper)
+    expect(resultSubEntry).to have_link(linkName, href: paper.url)
   end
 
   scenario "Finds papers by content" do
@@ -70,8 +83,50 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "Verwaltungsdokumente"}
     expect(page).to have_content("1 Dokument in der Datenbank")
-    result = page.find("li.search-result", match: :first)
-    expect(result).to have_link(paper.name, href: paper.url)
+    resultEntry = page.find("li.search-result", match: :first)
+    expect(resultEntry).to have_content(paper.name)
+
+    resultSubEntry = resultEntry.find("li.current", match: :first)
+    linkName = getLinkName(paper)
+    expect(resultSubEntry).to have_link(linkName, href: paper.url)
   end
 
+  scenario "Papers with common reference id in search result ordered by date" do
+    mainPaper = FactoryGirl.create(:paper, published_at: '2016-12-19T19:00:00',
+      name: "Opendata als default", reference: "VI-0815")
+    newPaper = FactoryGirl.create(:paper, published_at: '2016-12-23T12:00:00',
+        name: "Opendata als optional", reference: "VI-0815-ÄA-01")
+    Paper.__elasticsearch__.refresh_index!
+    visit search_path body: "leipzig", paper_search: {query: "default"}
+    expect(page).to have_content("1 Dokument in der Datenbank")
+    resultEntry = page.find("li.search-result", match: :first)
+    expect(resultEntry).to have_content(mainPaper.name)
+
+    resultSubEntry1 = resultEntry.find("li.current", match: :first)
+    linkName1 = getLinkName(mainPaper)
+    expect(resultSubEntry1).to have_link(linkName1, href: mainPaper.url)
+
+    resultSubEntries = resultEntry.find("ul").all("li")
+    linkName2 = getLinkName(newPaper)
+    expect(resultSubEntries[1]).to have_link(linkName2, href: newPaper.url)
+  end
+
+  scenario "Papers with common reference id in search result ordered by ref" do
+    mainPaper = FactoryGirl.create(:paper, published_at: '2016-12-19T19:00:00',
+      name: "Opendata als default", reference: "VI-0815")
+    newPaper1 = FactoryGirl.create(:paper, published_at: '2016-12-23T12:00:00',
+        name: "Opendata als optional", reference: "VI-0815-ÄA-02")
+    newPaper2 = FactoryGirl.create(:paper, published_at: '2016-12-23T12:00:00',
+            name: "Opendata als optional", reference: "VI-0815-ÄA-01")
+    Paper.__elasticsearch__.refresh_index!
+    visit search_path body: "leipzig", paper_search: {query: "default"}
+    expect(page).to have_content("1 Dokument in der Datenbank")
+    resultEntry = page.find("li.search-result", match: :first)
+
+    resultSubEntries = resultEntry.find("ul").all("li")
+    linkName1 = getLinkName(newPaper1)
+    expect(resultSubEntries[2]).to have_link(linkName1, href: newPaper1.url)
+    linkName2 = getLinkName(newPaper2)
+    expect(resultSubEntries[1]).to have_link(linkName2, href: newPaper2.url)
+  end
 end
