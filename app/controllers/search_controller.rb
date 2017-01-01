@@ -24,6 +24,36 @@ class SearchController < ApplicationController
   def execute_search
     @response = Paper.search(@search_definition.to_definition)
     @papers = @response.page(params[:page]).results
+    @sub = Hash.new
+    @papers.each do |paper|
+      unless paper.reference.nil? && paper.reference.contains("-")
+        segments = paper.reference.split("-")
+        id = (paper.reference.start_with?("VI-") && segments.count > 2 ?
+          segments[2] : segments[1])
+        escaped_chars = Regexp.escape('\\+-*:()[]{}&!?^|\/')
+        sanitized_id = id.gsub(/([#{escaped_chars}])/, '\\\\\1')
+        ['AND', 'OR', 'NOT'].each do |reserved|
+          escaped_reserved = reserved.split('').map { |c| "\\#{c}" }.join('')
+          sanitized_id = sanitized_id.gsub('/\s*\b(#{reserved.upcase})\b\s*/',
+            " #{escaped_reserved} ")
+        end
+        @sub_search_definition = Elasticsearch::DSL::Search.search do
+          query do
+            query_string do
+          	  query "*" + sanitized_id + "*"
+              fields ["reference"]
+            end
+          end
+
+          sort do
+            by :published_at, order: 'asc'
+            by :reference, order: 'asc'
+          end
+        end
+        @sub_papers = Paper.search(@sub_search_definition)
+        @sub[paper.reference] = @sub_papers
+      end
+    end
     @paper_type_facets = extract_facets('paper_types')
     @originator_facets = extract_facets('originators')
   end
