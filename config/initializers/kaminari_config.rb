@@ -9,5 +9,5 @@ Kaminari.configure do |config|
   # config.param_name = :page
 end
 
-Kaminari::Hooks.init
+Kaminari::Hooks.init if defined?(Kaminari::Hooks)
 Elasticsearch::Model::Response::Response.__send__ :include, Elasticsearch::Model::Response::Pagination::Kaminari

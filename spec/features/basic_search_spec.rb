@@ -210,4 +210,24 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
     expect(page).to have_content("0 Dokumente in der Datenbank")
   end
 
+  scenario "Papers with reference id having slash is escaped" do
+    mainPaper = FactoryGirl.create(:paper, published_at: '2016-12-19T19:00:00',
+      name: "Opendata als default", reference: "VI-00768/14")
+    newPaper = FactoryGirl.create(:paper, published_at: '2016-12-23T12:00:00',
+        name: "Opendata als optional", reference: "VI-00768/14-ÄA-01")
+    Paper.__elasticsearch__.refresh_index!
+    visit search_path body: "leipzig", paper_search: {query: "default"}
+    expect(page).to have_content("1 Dokument in der Datenbank")
+    resultEntry = page.find("li.search-result", match: :first)
+    expect(resultEntry).to have_content(mainPaper.name)
+
+    resultSubEntry1 = resultEntry.find("li.current", match: :first)
+    linkName1 = getLinkName(mainPaper)
+    expect(resultSubEntry1).to have_link(linkName1, href: mainPaper.url)
+
+    resultSubEntries = resultEntry.find("ul").all("li")
+    linkName2 = getLinkName(newPaper)
+    expect(resultSubEntries[1]).to have_link(linkName2, href: newPaper.url)
+  end
+  
 end
