@@ -3,21 +3,21 @@ require 'rails_helper'
 RSpec.feature "Search filters", type: :feature, elasticsearch: true do
 
   before(:each) do
-    @antrag    = FactoryGirl.create(:paper,
+    @antrag    = FactoryBot.create(:paper,
                                      paper_type: "Antrag",
                                      name: "Mehr Spielplätze in Leipzig",
                                      originator: "Dezernat Jugend, Soziales, Gesundheit und Schule"
                                     )
-    @anfrage   = FactoryGirl.create(:paper,
+    @anfrage   = FactoryBot.create(:paper,
                                      paper_type: "Anfrage",
                                      originator: "CDU-Fraktion"
                                     )
-    @vorlage_1 = FactoryGirl.create(:paper,
+    @vorlage_1 = FactoryBot.create(:paper,
                                      paper_type: "Vorlage",
                                      name: "Zustand der Spielplätze",
                                      originator: "Dezernat Jugend, Soziales, Gesundheit und Schule"
                                     )
-    @vorlage_2 = FactoryGirl.create(:paper,
+    @vorlage_2 = FactoryBot.create(:paper,
                                      paper_type: "Vorlage",
                                      name: "Mehr Ampeln in der Innenstadt",
                                      originator: "Oberbürgermeister"

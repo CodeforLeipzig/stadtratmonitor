@@ -21,7 +21,8 @@ module LorisWeb
     config.i18n.default_locale = :de
 
 
-    config.active_record.raise_in_transactional_callbacks = true
+    # https://stackoverflow.com/a/28008145
+    #config.active_record.raise_in_transactional_callbacks = true
 
   end
 end

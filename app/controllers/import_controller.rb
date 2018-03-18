@@ -1,5 +1,5 @@
 class ImportController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [:new_papers_callback]
+  skip_before_action :verify_authenticity_token, :only => [:new_papers_callback]
 
   def new_papers_callback
     require 'open-uri'

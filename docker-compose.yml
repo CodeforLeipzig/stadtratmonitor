@@ -9,7 +9,9 @@ web:
   environment:
     ELASTICSEARCH_URL: 'http://elasticsearch:9200'
 elasticsearch:
-  image: elasticsearch:1.7
+  image: elasticsearch:5.4.3
+  ports:
+    - "9200:9200"
   volumes:
     - .:/apps
   entrypoint: /apps/docker-entrypoint-es-plugins.sh

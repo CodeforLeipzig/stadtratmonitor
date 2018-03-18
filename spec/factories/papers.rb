@@ -1,6 +1,6 @@
 require_relative '../factory_helper'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :paper do
     name                 { Faker::Lorem.sentence }
     sequence(:url)       { |n| Faker::Internet.url("ris.example.org", "/paper-#{n}.html") }

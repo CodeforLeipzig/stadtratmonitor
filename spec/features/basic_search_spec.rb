@@ -4,7 +4,7 @@ require 'pp'
 RSpec.feature "Basic search", type: :feature, elasticsearch: true do
 
   before(:each) do
-    @papers = FactoryGirl.create_list(:paper, 11)
+    @papers = FactoryBot.create_list(:paper, 11)
     Paper.__elasticsearch__.refresh_index!
   end
 
@@ -63,7 +63,7 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   end
 
   scenario "Finds papers by name" do
-    paper = FactoryGirl.create(:paper, name: "Opendata als default")
+    paper = FactoryBot.create(:paper, name: "Opendata als default")
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "Opendata"}
     expect(page).to have_content("1 Dokument in der Datenbank")
@@ -76,7 +76,7 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   end
 
   scenario "Finds papers by content" do
-    paper = FactoryGirl.create(:paper,
+    paper = FactoryBot.create(:paper,
                                 name: "Opendata als default",
                                 content: "Alle Verwaltungsdokumente werden als Opendata veröffentlicht"
                                 )
@@ -92,9 +92,9 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   end
 
   scenario "Papers with common reference id in search result ordered by date" do
-    mainPaper = FactoryGirl.create(:paper, published_at: '2016-12-19T19:00:00',
+    mainPaper = FactoryBot.create(:paper, published_at: '2016-12-19T19:00:00',
       name: "Opendata als default", reference: "VI-0815")
-    newPaper = FactoryGirl.create(:paper, published_at: '2016-12-23T12:00:00',
+    newPaper = FactoryBot.create(:paper, published_at: '2016-12-23T12:00:00',
         name: "Opendata als optional", reference: "VI-0815-ÄA-01")
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "default"}
@@ -112,11 +112,11 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   end
 
   scenario "Papers with common reference id in search result ordered by ref" do
-    mainPaper = FactoryGirl.create(:paper, published_at: '2016-12-19T19:00:00',
+    mainPaper = FactoryBot.create(:paper, published_at: '2016-12-19T19:00:00',
       name: "Opendata als default", reference: "VI-0815")
-    newPaper1 = FactoryGirl.create(:paper, published_at: '2016-12-23T12:00:00',
+    newPaper1 = FactoryBot.create(:paper, published_at: '2016-12-23T12:00:00',
         name: "Opendata als optional", reference: "VI-0815-ÄA-02")
-    newPaper2 = FactoryGirl.create(:paper, published_at: '2016-12-23T12:00:00',
+    newPaper2 = FactoryBot.create(:paper, published_at: '2016-12-23T12:00:00',
             name: "Opendata als optional", reference: "VI-0815-ÄA-01")
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "default"}
@@ -131,11 +131,11 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   end
 
   scenario "Papers with common reference id handled also for missing prefix" do
-    mainPaper = FactoryGirl.create(:paper, published_at: '2016-12-19T19:00:00',
+    mainPaper = FactoryBot.create(:paper, published_at: '2016-12-19T19:00:00',
       name: "Opendata als default", reference: "VI-0815")
-    newPaper1 = FactoryGirl.create(:paper, published_at: '2016-12-23T12:00:00',
+    newPaper1 = FactoryBot.create(:paper, published_at: '2016-12-23T12:00:00',
         name: "Opendata als optional", reference: "VI-0815-NF-01")
-    newPaper1Change = FactoryGirl.create(:paper, published_at: '2016-12-23T12:00:00',
+    newPaper1Change = FactoryBot.create(:paper, published_at: '2016-12-23T12:00:00',
             name: "Opendata als nicht optional", reference: "-0815-NF-01-ÄA-01")
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "default"}
@@ -150,7 +150,7 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   end
 
   scenario "Finds 'Testen' with search 'Test'" do
-    paper = FactoryGirl.create(:paper, name: "Testen")
+    paper = FactoryBot.create(:paper, name: "Testen")
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "Test"}
     expect(page).to have_content("1 Dokument in der Datenbank")
@@ -159,7 +159,7 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   end
 
   scenario "Finds 'Test' with search 'Testen'" do
-    paper = FactoryGirl.create(:paper, name: "Test")
+    paper = FactoryBot.create(:paper, name: "Test")
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "Testen"}
     expect(page).to have_content("1 Dokument in der Datenbank")
@@ -168,7 +168,7 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   end
 
   scenario "Finds 'Fahrräderverleih' with search 'Fahrrad'" do
-    paper = FactoryGirl.create(:paper, name: "Fahrräderverleih")
+    paper = FactoryBot.create(:paper, name: "Fahrräderverleih")
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "Fahrrad"}
     expect(page).to have_content("1 Dokument in der Datenbank")
@@ -177,7 +177,7 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   end
 
   scenario "Finds 'Fahrräderverleih' with search 'Fahrräder'" do
-    paper = FactoryGirl.create(:paper, name: "Fahrräderverleih")
+    paper = FactoryBot.create(:paper, name: "Fahrräderverleih")
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "Fahrräder"}
     expect(page).to have_content("1 Dokument in der Datenbank")
@@ -186,7 +186,7 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   end
 
   scenario "Finds 'Fahrräderverleih' with search 'Verleih'" do
-    paper = FactoryGirl.create(:paper, name: "Fahrräderverleih")
+    paper = FactoryBot.create(:paper, name: "Fahrräderverleih")
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "Verleih"}
     expect(page).to have_content("1 Dokument in der Datenbank")
@@ -195,7 +195,7 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   end
 
   scenario "Finds 'Fahrräderverleih' with search 'Autoverleih'" do
-    paper = FactoryGirl.create(:paper, name: "Fahrräderverleih")
+    paper = FactoryBot.create(:paper, name: "Fahrräderverleih")
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "Autoverleih"}
     expect(page).to have_content("1 Dokument in der Datenbank")
@@ -204,16 +204,16 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
   end
 
   scenario "Finds no 'Fahrrad' with search 'Rad'" do
-    paper = FactoryGirl.create(:paper, name: "Fahrrad")
+    paper = FactoryBot.create(:paper, name: "Fahrrad")
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "Rad"}
     expect(page).to have_content("0 Dokumente in der Datenbank")
   end
 
   scenario "Papers with reference id having slash is escaped" do
-    mainPaper = FactoryGirl.create(:paper, published_at: '2016-12-19T19:00:00',
+    mainPaper = FactoryBot.create(:paper, published_at: '2016-12-19T19:00:00',
       name: "Opendata als default", reference: "VI-00768/14")
-    newPaper = FactoryGirl.create(:paper, published_at: '2016-12-23T12:00:00',
+    newPaper = FactoryBot.create(:paper, published_at: '2016-12-23T12:00:00',
         name: "Opendata als optional", reference: "VI-00768/14-ÄA-01")
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: "leipzig", paper_search: {query: "default"}

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails'
+gem 'rails', '~> 5.1.5'
 gem 'rails-i18n'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -30,8 +30,9 @@ gem 'validate_url'
 gem 'omniauth'
 gem 'omniauth-browserid'
 
-gem 'elasticsearch'
+gem 'elasticsearch', '~> 6'
 gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 gem 'elasticsearch-dsl'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
@@ -42,7 +43,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'quiet_assets'
+  # https://rossta.net/blog/quiet-assets-in-rails-5.html
+  # gem 'quiet_assets'
   gem 'awesome_print'
   # gem 'guard-rspec', require: false
   # gem 'terminal-notifier-guard' # FIXME cross-platform
@@ -57,14 +59,14 @@ group :development, :test do
 end
 
 group :test do
-  gem 'factory_girl_rails'
+  gem "factory_bot_rails"
   gem 'shoulda-matchers', '~> 3.1'
   gem 'faker'
   gem 'simplecov', require: false
-  gem 'test_after_commit' # TODO remove when moving to rails 5
   gem 'database_cleaner'
   gem 'coveralls', require: false
   gem 'capybara-webkit'
+  gem 'rails-controller-testing'
 end
 
 # Use ActiveModel has_secure_password

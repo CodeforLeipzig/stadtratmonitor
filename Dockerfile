@@ -1,8 +1,8 @@
-FROM ruby:2.2
-RUN apt-get update && \
-  apt-get install -y build-essential zlib1g-dev libsqlite3-dev nodejs nodejs-legacy npm \
+FROM ruby:2.5
+RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - && apt-get update && \
+  apt-get install -y build-essential zlib1g-dev libsqlite3-dev nodejs npm \
   libxml2-dev libxslt1-dev pkg-config \
-  libqt4-webkit libqt4-dev xvfb
+  libqtwebkit4 libqtwebkit-dev libqt4-dev xvfb
 
 RUN mkdir -p /app
 
