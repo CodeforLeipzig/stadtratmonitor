@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def glossary
+    render action: "glossary"
+  end
+
   def impressum
     render action: "impressum"
   end
