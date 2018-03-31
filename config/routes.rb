@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root :to => 'search#index', as: :search
   post '/import' => 'import#new_papers_callback'
+  get '/impressum' => 'application#impressum', as: :impressum
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

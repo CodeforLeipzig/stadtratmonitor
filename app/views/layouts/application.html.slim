@@ -11,7 +11,12 @@ html
     .row
       .small-12.columns
         .clearfix
-        h1#title = 'Stadtratmonitor Leipzig'
+        h1[id="title" class="left"] = link_to 'Stadtratmonitor Leipzig', search_path
+        div(class="right")
+          div(class="left") = link_to 'Suche', search_path
+          div(class="right header_indent") = link_to 'Impressum', impressum_url
+          div(class="clear")
+        div(class="clear")
         - flash.each do |name, msg|
           = content_tag :div, msg, class: name
         = yield

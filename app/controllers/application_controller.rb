@@ -11,5 +11,9 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def impressum
+    render action: "impressum"
+  end
+
   helper_method :current_user, :signed_in?
 end

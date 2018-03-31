@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title Stadtratmonitor Leipzig - Impressum
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'vendor/modernizr'
+    = csrf_meta_tags
+
+  body
+    .row
+      .small-12.columns
+        .clearfix
+        h3#title = 'Impressum'
+        h5#content = 'Inhalt'
+        div 
+          | Im Rahmen unseres wöchentlichen Treffens im <a href="https://codefor.de/leipzig/">OKLab Leipzig</a> haben wir 
+            einen Aufsatz auf das offizielle <a href="https://ratsinfo.leipzig.de/">Leipziger Ratsinformationssystem</a>
+            entwickelt, welcher dieses besser durchsuchbar machen soll.
+        h5#programming = 'Programmierung'
+        ul
+          li = link_to 'Andreas Haller', 'https://github.com/ahx'
+          li = link_to 'Lars Mai', 'https://github.com/lhm'
+          li = link_to 'Jörg Reichert <joerg.reichert@sstit.de>', 'https://github.com/joergreichert'
+        h5#sources = 'Quellen'
+        ul
+          li = link_to 'Web Anwendung Source Code', 'https://github.com/CodeforLeipzig/stadtratmonitor'
+          li = link_to 'Scraper Source Code', 'https://github.com/jrlover/city_council_leipzig_recent_papers'
+          li = link_to 'Scraper Ausführung', 'https://morph.io/jrlover/city_council_leipzig_recent_papers'
+          li = link_to 'Leipziger Ratsinformationssystem (Quelle)', 'https://ratsinfo.leipzig.de/'
+          li = link_to 'Impressum unserer Organisation Code for Germany (das auch für dieses Seite gelten soll)', 'https://codefor.de/impressum/'
