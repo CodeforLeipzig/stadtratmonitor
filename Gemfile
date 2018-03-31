@@ -35,6 +35,8 @@ gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'elasticsearch-dsl'
 
+gem 'leaflet-rails'
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 # bundle exec rake doc:rails generates the API under doc/api.

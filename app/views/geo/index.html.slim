@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title Stadtratmonitor Leipzig - Karte
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'https://unpkg.com/leaflet@1.0.1/dist/leaflet.css'
+    = javascript_include_tag 'vendor/modernizr'
+    = javascript_include_tag 'https://unpkg.com/leaflet@1.0.1/dist/leaflet.js'
+    = csrf_meta_tags
+
+  body
+    .row
+      .small-12.columns
+        .clearfix
+        h3#title = 'Karte'
+        div#map/
+        javascript:
+          var map = L.map('map').setView([51.4437366804, 11.865234375], 9);
+          L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {
+              attribution: 'Map data &#64; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors</a>',
+              maxZoom: 12,
+              minZoom: 8
+            }
+          ).addTo(map);
