@@ -13,9 +13,9 @@ html
         .clearfix
         h1[id="title" class="left"] = link_to 'Stadtratmonitor Leipzig', search_path
         div(class="right")
-          div(class="left") = link_to 'Suche', search_path
-          div(class="left header_indent") = link_to 'Glossar', glossary_url
-          div(class="right header_indent") = link_to 'Impressum', impressum_url
+          div(class="left") = link_to_unless_current 'Suche', search_path
+          div(class="left header_indent") = link_to_unless_current 'Glossar', glossary_url
+          div(class="right header_indent") = link_to_unless_current 'Impressum', impressum_url
           div(class="clear")
         div(class="clear")
         - flash.each do |name, msg|
