@@ -55,6 +55,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-rails'
   gem 'capybara'
+  gem 'puma'
   gem 'launchy'
 end
 
