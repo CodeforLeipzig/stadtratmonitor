@@ -11,7 +11,7 @@ xml.rss :version => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
         xml.title doc.name
         if !doc.content.blank?
         	xml.description do 
-        		xml.cdata! truncate(doc.content, length: 768)
+        		xml.cdata! truncate(doc.content.sub("------------------------------- ", ""), length: 768)
         	end
         end
 	    if !doc.published_at.blank?
@@ -26,11 +26,6 @@ xml.rss :version => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
 	        xml.category do 
 	        	xml.cdata! doc.paper_type
 	        end
-        end
-        if !doc.resolution.blank?
-        	xml.category do 
-        		xml.cdata! doc.resolution
-        	end
         end
         xml.link doc.url
         xml.guid doc.url
