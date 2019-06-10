@@ -15,11 +15,11 @@ html
         h3#title = 'Karte'
         div#map/
         javascript:
-          var map = L.map('map').setView([51.4437366804, 11.865234375], 9);
+          var map = L.map('map').setView([51.3399028, 12.3742236], 12);
           L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             {
               attribution: 'Map data &#64; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors</a>',
-              maxZoom: 12,
-              minZoom: 8
+              maxZoom: 16,
+              minZoom: 12
             }
           ).addTo(map);
