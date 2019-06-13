@@ -7,6 +7,5 @@ services:
   - docker
 
 script:
-  - chmod +x docker-entrypoint-es-plugins.sh
   - docker-compose run web rake db:setup
   - docker-compose run -e CI=true -e TRAVIS=true -e TRAVIS_BRANCH=$TRAVIS_BRANCH -e TRAVIS_COMMIT=$TRAVIS_COMMIT -e TRAVIS_JOB_NUMBER=$TRAVIS_JOB_NUMBER -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST -e TRAVIS_JOB_ID=$TRAVIS_JOB_ID -e TRAVIS_REPO_SLUG=$TRAVIS_REPO_SLUG web bin/run-tests 
