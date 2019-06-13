@@ -4,15 +4,17 @@ html
     title Stadtratmonitor Leipzig - Karte
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'https://unpkg.com/leaflet@1.0.1/dist/leaflet.css'
+    = javascript_include_tag 'geo'
     = javascript_include_tag 'vendor/modernizr'
     = javascript_include_tag 'https://unpkg.com/leaflet@1.0.1/dist/leaflet.js'
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'
     = csrf_meta_tags
 
   body
     .row
       .small-12.columns
         .clearfix
-        h3#title = 'Karte'
+        h3#title = 'Stadtbezirksräte und Ortschaftsräte'
         div#map/
         javascript:
           var map = L.map('map').setView([51.3399028, 12.3742236], 12);
@@ -23,3 +25,13 @@ html
               minZoom: 12
             }
           ).addTo(map);
+          $.ajaxSetup({
+	          scriptCharset: "utf-8",
+	          contentType: "application/json; charset=utf-8"
+	        });
+
+          var geojsonLayer = L.geoJson(geojsonDaten());
+          map.addLayer(geojsonLayer);
+
+          registerListeners(map, geojsonLayer)
+
