@@ -46,7 +46,7 @@ class SearchController < ApplicationController
           end
 
           sort do
-            by :published_at, order: 'asc'
+            by :published_at, order: 'desc'
             by :reference, order: 'asc'
           end
         end
