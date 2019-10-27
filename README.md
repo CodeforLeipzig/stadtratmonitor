@@ -1,8 +1,6 @@
 # Stadtratmonitor
 
-[![Build Status](https://travis-ci.org/CodeforLeipzig/stadtratmonitor.png?branch=master)](https://travis-ci.org/CodeforLeipzig/stadtratmonitor) [![Coverage Status](https://coveralls.io/repos/github/CodeforLeipzig/stadtratmonitor/badge.svg?branch=master)](https://coveralls.io/github/CodeforLeipzig/stadtratmonitor?branch=master) [![Code Climate](https://codeclimate.com/github/CodeforLeipzig/stadtratmonitor/badges/gpa.svg)](https://codeclimate.com/github/CodeforLeipzig/stadtratmonitor)
-[![Dependency Status](https://gemnasium.com/badges/github.com/CodeforLeipzig/stadtratmonitor.svg)](https://gemnasium.com/github.com/CodeforLeipzig/stadtratmonitor)
-[![Stories in Ready](https://badge.waffle.io/CodeforLeipzig/stadtratmonitor.png?label=ready&title=Ready)](http://waffle.io/CodeforLeipzig/stadtratmonitor)
+[![Build Status](https://travis-ci.org/CodeforLeipzig/stadtratmonitor.png?branch=master)](https://travis-ci.org/CodeforLeipzig/stadtratmonitor) [![Coverage Status](https://coveralls.io/repos/github/CodeforLeipzig/stadtratmonitor/badge.svg?branch=master)](https://coveralls.io/github/CodeforLeipzig/stadtratmonitor?branch=master)
 
 **Offical site:** https://stadtratmonitor.leipzig.codefor.de/
 

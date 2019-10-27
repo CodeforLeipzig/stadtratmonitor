@@ -108,7 +108,8 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
 
     resultSubEntries = resultEntry.find("ul").all("li")
     linkName2 = getLinkName(newPaper)
-    expect(resultSubEntries[1]).to have_link(linkName2, href: newPaper.url)
+    expect(resultSubEntries[0]).to have_link(linkName2, href: newPaper.url)
+    expect(resultSubEntries[1]).to have_link(linkName1, href: mainPaper.url)
   end
 
   scenario "Papers with common reference id in search result ordered by ref" do
@@ -125,9 +126,11 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
 
     resultSubEntries = resultEntry.find("ul").all("li")
     linkName1 = getLinkName(newPaper1)
-    expect(resultSubEntries[2]).to have_link(linkName1, href: newPaper1.url)
+    expect(resultSubEntries[0]).to have_link(linkName1, href: newPaper1.url)
     linkName2 = getLinkName(newPaper2)
     expect(resultSubEntries[1]).to have_link(linkName2, href: newPaper2.url)
+    linkName3 = getLinkName(mainPaper)
+    expect(resultSubEntries[2]).to have_link(linkName3, href: mainPaper.url)
   end
 
   scenario "Papers with common reference id handled also for missing prefix" do
@@ -144,9 +147,11 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
 
     resultSubEntries = resultEntry.find("ul").all("li")
     linkName1 = getLinkName(newPaper1)
-    expect(resultSubEntries[2]).to have_link(linkName1, href: newPaper1.url)
+    expect(resultSubEntries[0]).to have_link(linkName1, href: newPaper1.url)
     linkName2 = getLinkName(newPaper1Change)
     expect(resultSubEntries[1]).to have_link(linkName2, href: newPaper1Change.url)
+    linkName3 = getLinkName(mainPaper)
+    expect(resultSubEntries[2]).to have_link(linkName3, href: mainPaper.url)
   end
 
   scenario "Finds 'Testen' with search 'Test'" do
@@ -227,7 +232,8 @@ RSpec.feature "Basic search", type: :feature, elasticsearch: true do
 
     resultSubEntries = resultEntry.find("ul").all("li")
     linkName2 = getLinkName(newPaper)
-    expect(resultSubEntries[1]).to have_link(linkName2, href: newPaper.url)
+    expect(resultSubEntries[0]).to have_link(linkName2, href: newPaper.url)
+    expect(resultSubEntries[1]).to have_link(linkName1, href: mainPaper.url)
   end
   
 end

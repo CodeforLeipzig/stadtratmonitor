@@ -28,7 +28,7 @@ class SearchController < ApplicationController
     @papers.each do |paper|
       unless paper.reference.nil? && paper.reference.contains("-")
         segments = paper.reference.split("-")
-        id = (paper.reference.start_with?("VI-") && segments.count > 2 ?
+        id = ((paper.reference.start_with?("VI-") || paper.reference.start_with?("VII-")) && segments.count > 2 ?
           segments[2] : segments[1])
         escaped_chars = Regexp.escape('\\+-*:()[]{}&!?^|\/')
         sanitized_id = id.gsub(/([#{escaped_chars}])/, '\\\\\1')
@@ -47,7 +47,7 @@ class SearchController < ApplicationController
 
           sort do
             by :published_at, order: 'desc'
-            by :reference, order: 'asc'
+            by :reference, order: 'desc'
           end
         end
         @sub_papers = Paper.search(@sub_search_definition)
