@@ -1,4 +1,4 @@
-FROM ruby:2.5
+FROM ruby:2.5.7
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - && apt-get update && \
   apt-get install -y build-essential zlib1g-dev libsqlite3-dev nodejs npm \
   libxml2-dev libxslt1-dev pkg-config \

@@ -316,6 +316,3 @@ DEPENDENCIES
   tzinfo-data
   uglifier
   validate_url
-
-BUNDLED WITH
-   1.16.1
