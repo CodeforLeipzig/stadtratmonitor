@@ -68,7 +68,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'database_cleaner'
   gem 'coveralls', require: false
-  gem 'capybara-webkit'
+  gem 'apparition'
   gem 'rails-controller-testing'
 end
 

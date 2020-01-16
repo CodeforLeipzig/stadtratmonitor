@@ -1,8 +1,13 @@
 FROM ruby:2.5.7
-RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - && apt-get update && \
+RUN gem install bundler
+
+# Add google package repository for google chrome
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+
+RUN apt-get update && \
   apt-get install -y build-essential zlib1g-dev libsqlite3-dev nodejs npm \
-  libxml2-dev libxslt1-dev pkg-config \
-  libqtwebkit4 libqtwebkit-dev libqt4-dev xvfb
+  libxml2-dev libxslt1-dev pkg-config google-chrome-stable
 
 RUN mkdir -p /app
 
