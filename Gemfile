@@ -31,8 +31,8 @@ gem 'omniauth'
 gem 'omniauth-browserid'
 
 gem 'elasticsearch', '~> 6'
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
+gem 'elasticsearch-model', '~> 6'
+gem 'elasticsearch-rails', '~> 6'
 gem 'elasticsearch-dsl'
 
 gem 'leaflet-rails'

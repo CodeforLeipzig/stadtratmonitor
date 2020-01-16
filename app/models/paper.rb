@@ -21,43 +21,47 @@ class Paper < ActiveRecord::Base
 
   index_name ['srm', Rails.env, self.base_class.to_s.pluralize.underscore].join('_')
 
-  settings index: { 
-	  number_of_shards: 1,
-	  analysis: {
-		filter: {
-		  german_stop: {
-		    type: "stop",
-		    stopwords: "_german_"
-          }, 
-		  german_stemmer: {
-		    type: "stemmer",
-		    language: "light_german"
-          },
-		  decomp: {
-		    type: "decompound"
-          }
-        }, 
-		analyzer: {
-		  german: {
-		    tokenizer: "standard",
-		    filter: [
-		      "lowercase",
-		      "german_stop",
-		      "german_normalization",
-		      "german_stemmer",
-		      "decomp"
-		    ]
-          }
+  settings index: {
+    number_of_shards: 1,
+    analysis: {
+      filter: {
+        german_stop: {
+          type: "stop",
+          stopwords: "_german_"
+        },
+        german_stemmer: {
+          type: "stemmer",
+          language: "light_german"
+        },
+        german_decompounder: {
+          type: "hyphenation_decompounder",
+          word_list_path: "analysis/dictionary-de.txt",
+          hyphenation_patterns_path: "analysis/de_DR.xml",
+          only_longest_match: true,
+          min_subword_size: 4
+        },
+      },
+      analyzer: {
+        german: {
+          tokenizer: "standard",
+          filter: [
+            "lowercase",
+            "german_stop",
+              "german_decompounder",
+            "german_normalization",
+            "german_stemmer"
+          ]
         }
       }
+    }
     } do mappings dynamic: false do
-      indexes :name, type: :string, analyzer: "german"
-      indexes :content, type: :string, analyzer: "german"
-      indexes :resolution, type: :string, analyzer: "german"
-      indexes :reference, type: :string, index: :not_analyzed
-      indexes :paper_type, type: :string, index: :not_analyzed
-      indexes :published_at, type: :date, index: :not_analyzed
-      indexes :originator, type: :string, index: :not_analyzed
+      indexes :name, type: :text, analyzer: "german"
+      indexes :content, type: :text, analyzer: "german"
+      indexes :resolution, type: :text, analyzer: "german"
+      indexes :reference, type: :keyword, index: true
+      indexes :paper_type, type: :keyword, index: true
+      indexes :published_at, type: :date, index: true
+      indexes :originator, type: :keyword, index: true
     end
   end
 

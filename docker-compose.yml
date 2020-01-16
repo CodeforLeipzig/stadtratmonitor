@@ -1,22 +1,28 @@
-web:
-  build: .
-  volumes:
-    - .:/app
-  ports:
-    - "3000:3000"
-  links:
-    - elasticsearch
-  environment:
-    ELASTICSEARCH_URL: 'http://elasticsearch:9200'
-elasticsearch:
-  image: elasticsearch:5.4.3
-  command:
-    - sh
-    - -c
-    - "./bin/elasticsearch-plugin install http://xbib.org/repository/org/xbib/elasticsearch/plugin/elasticsearch-analysis-decompound/5.4.3.0/elasticsearch-analysis-decompound-5.4.3.0-plugin.zip;
-      ./bin/elasticsearch-plugin install https://github.com/royrusso/elasticsearch-HQ/zipball/master;
-       /docker-entrypoint.sh elasticsearch"
-  ports:
-    - "9200:9200"
-  volumes:
-    - .:/apps
+version: "3.7"
+volumes:
+  elasticsearch:
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    links:
+      - elasticsearch
+    environment:
+      ELASTICSEARCH_URL: 'http://elasticsearch:9200'
+  elasticsearch:
+    build: ./docker/elasticsearch
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+  elastichq:
+    image: elastichq/elasticsearch-hq
+    ports:
+      - "5000:5000"
+    links:
+      - elasticsearch
