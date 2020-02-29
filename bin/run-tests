@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-xvfb-run bundle exec rspec
+dockerize -wait $ELASTICSEARCH_URL -timeout 30s bundle exec rspec
