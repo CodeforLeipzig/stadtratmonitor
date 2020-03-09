@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'elasticsearch/model'
 require 'json'
 require 'parseable_date_validator'
@@ -9,7 +11,7 @@ class Paper < ActiveRecord::Base
   validates :name,         presence: true, length: { maximum: 1000 }
   validates :url,          presence: true,
                            length: { maximum: 1000 },
-                           uniqueness: true, # TODO use unique index instead
+                           uniqueness: true, # TODO: use unique index instead
                            url: true
   validates :reference,    presence: true, length: { maximum: 100 }
   validates :body,         presence: true, length: { maximum: 100 }
@@ -19,45 +21,46 @@ class Paper < ActiveRecord::Base
   validates :published_at, presence: true, parseable_date: true
   validates :resolution,   length: { maximum: 30_000 }
 
-  index_name ['srm', Rails.env, self.base_class.to_s.pluralize.underscore].join('_')
+  index_name ['srm', Rails.env, base_class.to_s.pluralize.underscore].join('_')
 
   settings index: {
     number_of_shards: 1,
     analysis: {
       filter: {
         german_stop: {
-          type: "stop",
-          stopwords: "_german_"
+          type: 'stop',
+          stopwords: '_german_'
         },
         german_stemmer: {
-          type: "stemmer",
-          language: "light_german"
+          type: 'stemmer',
+          language: 'light_german'
         },
         german_decompounder: {
-          type: "hyphenation_decompounder",
-          word_list_path: "analysis/dictionary-de.txt",
-          hyphenation_patterns_path: "analysis/de_DR.xml",
+          type: 'hyphenation_decompounder',
+          word_list_path: 'analysis/dictionary-de.txt',
+          hyphenation_patterns_path: 'analysis/de_DR.xml',
           only_longest_match: true,
           min_subword_size: 4
-        },
+        }
       },
       analyzer: {
         german: {
-          tokenizer: "standard",
-          filter: [
-            "lowercase",
-            "german_stop",
-              "german_decompounder",
-            "german_normalization",
-            "german_stemmer"
+          tokenizer: 'standard',
+          filter: %w[
+            lowercase
+            german_stop
+            german_decompounder
+            german_normalization
+            german_stemmer
           ]
         }
       }
     }
-    } do mappings dynamic: false do
-      indexes :name, type: :text, analyzer: "german"
-      indexes :content, type: :text, analyzer: "german"
-      indexes :resolution, type: :text, analyzer: "german"
+  } do
+    mappings dynamic: false do
+      indexes :name, type: :text, analyzer: 'german'
+      indexes :content, type: :text, analyzer: 'german'
+      indexes :resolution, type: :text, analyzer: 'german'
       indexes :reference, type: :keyword, index: true
       indexes :paper_type, type: :keyword, index: true
       indexes :published_at, type: :date, index: true
@@ -66,10 +69,10 @@ class Paper < ActiveRecord::Base
   end
 
   def split_originator
-    originator.split(/\d\.\s/).reject {|s| s.blank?} || originator
+    originator.split(/\d\.\s/).reject(&:blank?) || originator
   end
 
-  def as_indexed_json(options={})
+  def as_indexed_json(_options = {})
     as_json.merge(originator: split_originator)
   end
 
@@ -86,7 +89,7 @@ class Paper < ActiveRecord::Base
           paper_type: record['paper_type'],
           published_at: record['published_at'],
           reference: record['reference'],
-          url: record['url'],
+          url: record['url']
         }
         record = find_or_initialize_by(url: attributes[:url])
         record.update_attributes(attributes)
@@ -104,8 +107,7 @@ class Paper < ActiveRecord::Base
 
     def reset_index!
       __elasticsearch__.create_index! force: true
-      all.each {|p| p.__elasticsearch__.index_document }
+      all.each { |p| p.__elasticsearch__.index_document }
     end
-
   end
 end
