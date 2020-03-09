@@ -65,6 +65,7 @@ group :test do
   gem "factory_bot_rails"
   gem 'shoulda-matchers', '~> 3.1'
   gem 'faker'
+  gem 'rubocop-faker'
   gem 'simplecov', require: false
   gem 'database_cleaner'
   gem 'coveralls', require: false
