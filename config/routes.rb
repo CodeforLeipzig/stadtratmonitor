@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to => 'search#index', as: :search
+  root to: 'search#index', as: :search
   post '/import' => 'import#new_papers_callback'
   get '/map' => 'geo#index', as: :geo
   get '/glossary' => 'application#glossary', as: :glossary

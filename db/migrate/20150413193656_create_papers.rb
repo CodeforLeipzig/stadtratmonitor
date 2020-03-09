@@ -19,6 +19,6 @@ class CreatePapers < ActiveRecord::Migration[4.2]
     add_index(:papers, :reference)
     add_index(:papers, :originator)
     add_index(:papers, :body)
-    add_index(:papers, [:reference, :body], unique: true)
+    add_index(:papers, %i[reference body], unique: true)
   end
 end

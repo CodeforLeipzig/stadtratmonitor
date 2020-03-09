@@ -18,7 +18,7 @@ xml.rss :version => '2.0', 'xmlns:dc' => 'http://purl.org/dc/elements/1.1/' do
         end
         unless doc.published_at.blank?
           xml.pubDate DateTime.parse(doc.published_at).utc.strftime('%a, %d %b %Y %H:%M:%S %z')
-          end
+        end
         doc.originator.each do |originator|
           xml.dc :creator do
             xml.cdata! originator

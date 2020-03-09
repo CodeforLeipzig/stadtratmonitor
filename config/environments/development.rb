@@ -37,5 +37,4 @@ Rails.application.configure do
 
   # flush stdout in order to get logs in realtime
   $stdout.sync = true
-
 end

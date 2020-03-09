@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require File.expand_path('boot', __dir__)
 
 require 'rails/all'
 
@@ -20,9 +20,7 @@ module LorisWeb
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :de
 
-
     # https://stackoverflow.com/a/28008145
-    #config.active_record.raise_in_transactional_callbacks = true
-
+    # config.active_record.raise_in_transactional_callbacks = true
   end
 end

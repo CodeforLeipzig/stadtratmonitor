@@ -209,7 +209,7 @@ RSpec.feature 'Basic search', type: :feature, elasticsearch: true do
   end
 
   scenario "Finds no 'Fahrrad' with search 'Rad'" do
-    paper = FactoryBot.create(:paper, name: 'Fahrrad')
+    FactoryBot.create(:paper, name: 'Fahrrad')
     Paper.__elasticsearch__.refresh_index!
     visit search_path body: 'leipzig', paper_search: { query: 'Rad' }
     expect(page).to have_content('0 Dokumente in der Datenbank')
