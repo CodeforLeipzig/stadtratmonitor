@@ -21,7 +21,6 @@ gem 'omniauth-browserid'
 # templates, css and other frontend related
 gem 'sass-rails'
 gem 'uglifier'
-gem 'coffee-rails'
 gem 'slim-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
