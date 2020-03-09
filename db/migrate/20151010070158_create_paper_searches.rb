@@ -1,4 +1,4 @@
-class CreatePaperSearches < ActiveRecord::Migration
+class CreatePaperSearches < ActiveRecord::Migration[4.2]
   def change
     create_table :paper_searches do |t|
       t.string :query

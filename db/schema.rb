@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -14,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20151010070158) do
 
   create_table "importers", force: :cascade do |t|
-    t.string   "url"
+    t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,31 +26,29 @@ ActiveRecord::Schema.define(version: 20151010070158) do
   end
 
   create_table "papers", force: :cascade do |t|
-    t.string   "name"
-    t.string   "url"
-    t.string   "reference"
-    t.string   "body"
+    t.string "name"
+    t.string "url"
+    t.string "reference"
+    t.string "body"
     t.datetime "published_at"
     t.datetime "scraped_at"
-    t.string   "paper_type"
-    t.string   "originator"
-    t.text     "resolution"
-    t.text     "content"
+    t.string "paper_type"
+    t.string "originator"
+    t.text "resolution"
+    t.text "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["body"], name: "index_papers_on_body"
+    t.index ["originator"], name: "index_papers_on_originator"
+    t.index ["reference", "body"], name: "index_papers_on_reference_and_body", unique: true
+    t.index ["reference"], name: "index_papers_on_reference"
   end
-
-  add_index "papers", ["body"], name: "index_papers_on_body"
-  add_index "papers", ["originator"], name: "index_papers_on_originator"
-  add_index "papers", ["reference", "body"], name: "index_papers_on_reference_and_body", unique: true
-  add_index "papers", ["reference"], name: "index_papers_on_reference"
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
+    t.string "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end
