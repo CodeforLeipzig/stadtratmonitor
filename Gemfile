@@ -59,6 +59,7 @@ group :development, :test do
   gem 'capybara'
   gem 'puma'
   gem 'launchy'
+  gem 'rubocop'
 end
 
 group :test do
