@@ -97,6 +97,22 @@ class Paper < ActiveRecord::Base
       puts "Imported #{count - old_count} Papers!"
     end
 
+    def import_from_oparl(oparl_doc)
+      doc = JSON.parse(oparl_doc)
+      attributes = {
+        name: doc['name'],
+        body: doc['body'],
+        paper_type: doc['paperType'],
+        reference: doc['reference'],
+        url: doc['web'],
+        published_at: doc['modified'],
+        content: 'n.a.',
+        originator: doc['leipzig:originator']
+      }
+      record = find_or_initialize_by(url: attributes[:url])
+      record.update(attributes) ? record : nil
+    end
+
     # use DSL to define search queries
     # see https://github.com/elastic/elasticsearch-ruby/tree/master/elasticsearch-dsl
     # and https://github.com/elastic/elasticsearch-rails/tree/master/elasticsearch-rails/lib/rails/templates

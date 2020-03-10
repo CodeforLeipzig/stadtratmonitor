@@ -51,4 +51,30 @@ RSpec.describe Paper do
 
     it { should validate_length_of(:resolution).is_at_most(30_000) }
   end
+
+  context 'Paper.import_from_oparl' do
+    let(:oparl_paper_json) { File.read(Rails.root.join('spec/fixtures/oparl-paper.json')) }
+
+    it 'creates a database record for the document' do
+      expect { Paper.import_from_oparl(oparl_paper_json) }.to change { Paper.count }.by(1)
+    end
+
+    it 'populates the fields of the record correctly' do
+      source = JSON.parse(oparl_paper_json)
+      record = Paper.import_from_oparl(oparl_paper_json)
+      mapping = {
+        'name' => 'name',
+        'body' => 'body',
+        'paperType' => 'paper_type',
+        'reference' => 'reference',
+        'web' => 'url',
+        'modified' => 'published_at',
+        'leipzig:originator' => 'originator'
+      }
+      mapping.each do |source_field, target_field|
+        expect(source[source_field]).to be_present, "#{source_field} not present in source"
+        expect(record[target_field]).to eq(source[source_field])
+      end
+    end
+  end
 end

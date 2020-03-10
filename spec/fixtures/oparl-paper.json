@@ -1,0 +1,34 @@
+{
+  "id": "https://ratsinfo.leipzig.de/bi/oparl/1.0/papers.asp?id=1014936",
+  "type": "https://schema.oparl.org/1.0/Paper",
+  "body": "https://ratsinfo.leipzig.de/bi/oparl/1.0/bodies.asp?id=2387",
+  "name": "Wiederherstellung des Haltepunktes an der Bahnstrecke und Zugänglichkeit zur Naherholung des Leipziger Ortsteils Knautnaundorf",
+  "reference": "VII-P-00651",
+  "paperType": "Petition",
+  "date": "2020-02-28",
+  "mainFile": {
+    "id": "https://ratsinfo.leipzig.de/bi/oparl/1.0/files.asp?dtyp=130&id=1612340",
+    "type": "https://schema.oparl.org/1.0/File",
+    "name": "Vorlage-Sammeldokument",
+    "fileName": "1612340.pdf",
+    "mimeType": "application/pdf",
+    "modified": "2020-03-01T22:05:35+01:00",
+    "size": 199412,
+    "accessUrl": "https://ratsinfo.leipzig.de/bi/oparl/1.0/download.asp?dtyp=130&id=1612340"
+  },
+  "consultation": [
+    {
+      "id": "https://ratsinfo.leipzig.de/bi/oparl/1.0/consultations.asp?typ=s&id=1051155",
+      "type": "https://schema.oparl.org/1.0/Consultation",
+      "organization": [
+        "https://ratsinfo.leipzig.de/bi/oparl/1.0/organizations.asp?typ=gr&id=2346"
+      ],
+      "role": "Vorberatung",
+      "paper": "https://ratsinfo.leipzig.de/bi/oparl/1.0/papers.asp?id=1014936"
+    }
+  ],
+  "web": "https://ratsinfo.leipzig.de/bi/vo020.asp?VOLFDNR=1014936",
+  "created": "2019-12-11T12:00:00+01:00",
+  "modified": "2020-02-28T12:49:29+01:00",
+  "leipzig:originator": "Petitionsausschuss"
+}
