@@ -29,7 +29,6 @@ gem 'foundation-rails', '~> 5.5'
 # misc
 gem 'leaflet-rails'
 gem 'validate_url'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 group :development do
   gem 'spring'

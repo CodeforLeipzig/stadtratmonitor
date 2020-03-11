@@ -326,7 +326,6 @@ DEPENDENCIES
   spring-commands-rspec
   sqlite3
   turbolinks
-  tzinfo-data
   uglifier
   validate_url
 
