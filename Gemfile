@@ -30,7 +30,6 @@ gem 'foundation-rails', '~> 5.5'
 gem 'leaflet-rails'
 gem 'validate_url'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development do
   gem 'spring'
