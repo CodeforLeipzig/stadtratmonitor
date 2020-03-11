@@ -4,11 +4,11 @@ gem 'rails', '~> 5.1.5'
 gem 'rails-i18n'
 
 # database and search index
-gem 'sqlite3'
 gem 'elasticsearch', '~> 6'
+gem 'elasticsearch-dsl'
 gem 'elasticsearch-model', '~> 6'
 gem 'elasticsearch-rails', '~> 6'
-gem 'elasticsearch-dsl'
+gem 'sqlite3'
 
 # pagination
 gem 'kaminari'
@@ -19,41 +19,41 @@ gem 'omniauth'
 gem 'omniauth-browserid'
 
 # templates, css and other frontend related
-gem 'sass-rails'
-gem 'uglifier'
-gem 'slim-rails'
-gem 'jquery-rails'
-gem 'turbolinks'
 gem 'foundation-rails', '~> 5.5'
+gem 'jquery-rails'
+gem 'sass-rails'
+gem 'slim-rails'
+gem 'turbolinks'
+gem 'uglifier'
 
 # misc
 gem 'leaflet-rails'
 gem 'validate_url'
 
 group :development do
+  gem 'awesome_print'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'awesome_print'
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
+  gem 'launchy'
   gem 'pry'
   gem 'pry-rails'
-  gem 'capybara'
   gem 'puma'
-  gem 'launchy'
+  gem 'rspec-rails', '~> 3.0'
   gem 'rubocop'
 end
 
 group :test do
-  gem 'factory_bot_rails'
-  gem 'shoulda-matchers', '~> 3.1'
-  gem 'faker'
-  gem 'rubocop-faker'
-  gem 'simplecov', require: false
-  gem 'database_cleaner'
-  gem 'coveralls', require: false
   gem 'apparition'
+  gem 'coveralls', require: false
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'rails-controller-testing'
+  gem 'rubocop-faker'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'simplecov', require: false
 end
