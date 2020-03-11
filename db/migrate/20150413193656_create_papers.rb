@@ -1,4 +1,4 @@
-class CreatePapers < ActiveRecord::Migration
+class CreatePapers < ActiveRecord::Migration[4.2]
   def change
     create_table :papers do |t|
       t.string :name
@@ -19,6 +19,6 @@ class CreatePapers < ActiveRecord::Migration
     add_index(:papers, :reference)
     add_index(:papers, :originator)
     add_index(:papers, :body)
-    add_index(:papers, [:reference, :body], unique: true)
+    add_index(:papers, %i[reference body], unique: true)
   end
 end

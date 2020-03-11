@@ -329,6 +329,7 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n
   rspec-rails (~> 3.0)
+  rubocop
   rubocop-faker
   sass-rails
   sdoc (~> 0.4.0)

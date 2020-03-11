@@ -1,14 +1,15 @@
-SearchFacet = Struct.new("SearchFacet", :term, :count) do
+# frozen_string_literal: true
+
+SearchFacet = Struct.new('SearchFacet', :term, :count) do
   def term_with_count
     "#{term} (#{count})"
   end
 end
 
-
 class SearchController < ApplicationController
   def index
     @search_definition = PaperSearch.new(search_params)
-    @search_definition.sort_by ||= "date"
+    @search_definition.sort_by ||= 'date'
 
     execute_search
   end
@@ -16,7 +17,7 @@ class SearchController < ApplicationController
   def show
     @search_definition = PaperSearch.find params[:id]
     execute_search
-    render action: "index"
+    render action: 'index'
   end
 
   private
@@ -24,35 +25,35 @@ class SearchController < ApplicationController
   def execute_search
     @response = Paper.search(@search_definition.to_definition)
     @papers = @response.page(params[:page]).results
-    @sub = Hash.new
+    @sub = {}
     @papers.each do |paper|
-      unless paper.reference.nil? && paper.reference.contains("-")
-        segments = paper.reference.split("-")
-        id = ((paper.reference.start_with?("VI-") || paper.reference.start_with?("VII-")) && segments.count > 2 ?
-          segments[2] : segments[1])
-        escaped_chars = Regexp.escape('\\+-*:()[]{}&!?^|\/')
-        sanitized_id = id.gsub(/([#{escaped_chars}])/, '\\\\\1')
-        ['AND', 'OR', 'NOT'].each do |reserved|
-          escaped_reserved = reserved.split('').map { |c| "\\#{c}" }.join('')
-          sanitized_id = sanitized_id.gsub('/\s*\b(#{reserved.upcase})\b\s*/',
-            " #{escaped_reserved} ")
-        end
-        @sub_search_definition = Elasticsearch::DSL::Search.search do
-          query do
-            query_string do
-          	  query "*" + sanitized_id + "*"
-              fields ["reference"]
-            end
-          end
+      next if paper.reference.nil? && paper.reference.contains('-')
 
-          sort do
-            by :published_at, order: 'desc'
-            by :reference, order: 'desc'
+      segments = paper.reference.split('-')
+      id = ((paper.reference.start_with?('VI-') || paper.reference.start_with?('VII-')) && segments.count > 2 ?
+        segments[2] : segments[1])
+      escaped_chars = Regexp.escape('\\+-*:()[]{}&!?^|\/')
+      sanitized_id = id.gsub(/([#{escaped_chars}])/, '\\\\\1')
+      %w[AND OR NOT].each do |reserved|
+        escaped_reserved = reserved.split('').map { |c| "\\#{c}" }.join('')
+        sanitized_id = sanitized_id.gsub('/\s*\b(#{reserved.upcase})\b\s*/',
+                                         " #{escaped_reserved} ")
+      end
+      @sub_search_definition = Elasticsearch::DSL::Search.search do
+        query do
+          query_string do
+            query '*' + sanitized_id + '*'
+            fields ['reference']
           end
         end
-        @sub_papers = Paper.search(@sub_search_definition)
-        @sub[paper.reference] = @sub_papers
+
+        sort do
+          by :published_at, order: 'desc'
+          by :reference, order: 'desc'
+        end
       end
+      @sub_papers = Paper.search(@sub_search_definition)
+      @sub[paper.reference] = @sub_papers
     end
     @paper_type_facets = extract_facets('paper_types')
     @originator_facets = extract_facets('originators')
@@ -63,9 +64,8 @@ class SearchController < ApplicationController
   end
 
   def extract_facets(name)
-    @response.
-      response['aggregations'][name.to_s][name.to_s]['buckets'].
-      map {|m| SearchFacet.new(m['key'], m['doc_count'])}
+    @response
+      .response['aggregations'][name.to_s][name.to_s]['buckets']
+      .map { |m| SearchFacet.new(m['key'], m['doc_count']) }
   end
-
 end
