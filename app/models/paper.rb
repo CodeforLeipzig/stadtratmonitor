@@ -92,7 +92,10 @@ class Paper < ActiveRecord::Base
           url: record['url']
         }
         record = find_or_initialize_by(url: attributes[:url])
-        record.update_attributes(attributes)
+        out = record.update_attributes(attributes)
+        if !out
+          puts "Not imported #{attributes[:name]}: #{record.errors.messages}"
+        end
       end
       puts "Imported #{count - old_count} Papers!"
     end
