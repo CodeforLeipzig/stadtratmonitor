@@ -197,7 +197,7 @@ GEM
     regexp_parser (1.8.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
@@ -322,6 +322,7 @@ DEPENDENCIES
   rubocop
   rubocop-faker
   sass-rails
+  sassc (~> 2.1.0)
   shoulda-matchers (~> 3.1)
   simplecov
   slim-rails
