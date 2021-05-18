@@ -138,7 +138,7 @@ GEM
     minitest (5.14.2)
     multi_json (1.15.0)
     multipart-post (2.1.1)
-    nio4r (2.5.4)
+    nio4r (2.5.7)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     omniauth (1.9.1)
@@ -157,7 +157,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.6)
-    puma (5.0.0)
+    puma (5.3.1)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-test (1.1.0)
@@ -322,6 +322,7 @@ DEPENDENCIES
   rubocop
   rubocop-faker
   sass-rails
+  sassc (~> 2.1.0)
   shoulda-matchers (~> 3.1)
   simplecov
   slim-rails
