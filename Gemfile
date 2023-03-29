@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 7.0.4'
 gem 'rails-i18n'
 
 # database and search index
-gem 'elasticsearch', '~> 6'
+gem 'elasticsearch', '~> 8'
 gem 'elasticsearch-dsl'
-gem 'elasticsearch-model', '~> 6'
-gem 'elasticsearch-rails', '~> 6'
+gem 'elasticsearch-model', '~> 7'
+gem 'elasticsearch-rails', '~> 7'
 gem 'sqlite3'
 
 # pagination
@@ -19,7 +19,7 @@ gem 'omniauth'
 gem 'omniauth-browserid'
 
 # templates, css and other frontend related
-gem 'foundation-rails', '~> 5.5'
+gem 'foundation-rails', '~> 6.5'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'sassc', '~> 2.1.0'
@@ -49,7 +49,6 @@ end
 
 group :test do
   gem 'apparition'
-  gem 'coveralls', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'

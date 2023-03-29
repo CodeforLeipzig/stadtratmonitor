@@ -1,4 +1,4 @@
-FROM ruby:2.5.7
+FROM ruby:3.2.1
 RUN gem install bundler
 
 # Add google package repository for google chrome
@@ -22,6 +22,7 @@ WORKDIR /tmp
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 RUN bundle config build.nokogiri --use-system-libraries
+RUN bundle update
 RUN bundle install
 
 ADD . /app

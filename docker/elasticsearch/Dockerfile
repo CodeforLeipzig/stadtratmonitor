@@ -1,4 +1,4 @@
-FROM elasticsearch:6.8.6
+FROM elasticsearch:8.6.2
 
 RUN \
   mkdir -p /usr/share/elasticsearch/config/analysis && \
