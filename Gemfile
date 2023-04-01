@@ -44,7 +44,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'pry-rails'
-  gem 'puma', '~> 5.2'
+  gem 'puma'
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop'
 end
