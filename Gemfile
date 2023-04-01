@@ -31,6 +31,8 @@ gem 'uglifier'
 gem 'leaflet-rails'
 gem 'validate_url'
 
+gem 'webrick', '~> 1.7'
+
 group :development do
   gem 'awesome_print'
   gem 'spring'
@@ -42,7 +44,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'pry-rails'
-  gem 'puma'
+  gem 'puma', '~> 5.2'
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop'
 end
