@@ -66,7 +66,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    addressable (2.8.1)
+    addressable (2.8.2)
       public_suffix (>= 2.0.2, < 6.0)
     apparition (0.6.0)
       capybara (~> 3.13, < 4)
@@ -102,10 +102,10 @@ GEM
     elastic-transport (8.2.1)
       faraday (< 3)
       multi_json
-    elasticsearch (8.6.0)
+    elasticsearch (8.7.0)
       elastic-transport (~> 8)
-      elasticsearch-api (= 8.6.0)
-    elasticsearch-api (8.6.0)
+      elasticsearch-api (= 8.7.0)
+    elasticsearch-api (8.7.0)
       multi_json
     elasticsearch-dsl (0.1.10)
     elasticsearch-model (7.1.1)
@@ -160,7 +160,7 @@ GEM
       addressable (~> 2.8)
     leaflet-rails (1.9.3)
       rails (>= 4.2.0)
-    loofah (2.19.1)
+    loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.8.1)
@@ -194,7 +194,7 @@ GEM
       multi_json
       omniauth (~> 1.0)
     parallel (1.22.1)
-    parser (3.2.1.1)
+    parser (3.2.2.0)
       ast (~> 2.4.1)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -393,9 +393,6 @@ DEPENDENCIES
   uglifier
   validate_url
   webrick (~> 1.7)
-
-RUBY VERSION
-   ruby 3.2.1p31
 
 BUNDLED WITH
    2.4.10

@@ -1,4 +1,4 @@
-FROM ruby:3.2.1
+FROM ruby:3.2.2
 RUN gem install bundler
 
 # Add google package repository for google chrome
