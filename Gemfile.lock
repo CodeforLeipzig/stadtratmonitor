@@ -99,13 +99,10 @@ GEM
     date (3.3.3)
     diff-lcs (1.5.0)
     docile (1.4.0)
-    elastic-transport (8.2.1)
-      faraday (< 3)
-      multi_json
-    elasticsearch (8.7.0)
-      elastic-transport (~> 8)
-      elasticsearch-api (= 8.7.0)
-    elasticsearch-api (8.7.0)
+    elasticsearch (7.17.7)
+      elasticsearch-api (= 7.17.7)
+      elasticsearch-transport (= 7.17.7)
+    elasticsearch-api (7.17.7)
       multi_json
     elasticsearch-dsl (0.1.10)
     elasticsearch-model (7.1.1)
@@ -113,6 +110,9 @@ GEM
       elasticsearch (> 1)
       hashie
     elasticsearch-rails (7.2.1)
+    elasticsearch-transport (7.17.7)
+      faraday (~> 1)
+      multi_json
     erubi (1.12.0)
     execjs (2.8.1)
     factory_bot (6.2.1)
@@ -122,10 +122,9 @@ GEM
       railties (>= 5.0.0)
     faker (3.1.1)
       i18n (>= 1.8.11, < 2)
-    faraday (2.7.4)
-      faraday-net_http (>= 2.0, < 3.1)
-      ruby2_keywords (>= 0.0.4)
-    faraday-net_http (3.0.2)
+    faraday (1.2.0)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords
     ffi (1.15.5)
     foundation-rails (6.6.2.0)
       railties (>= 3.1.0)
@@ -174,6 +173,7 @@ GEM
     mini_mime (1.1.2)
     minitest (5.18.0)
     multi_json (1.15.0)
+    multipart-post (2.3.0)
     net-imap (0.3.4)
       date
       net-protocol
@@ -358,7 +358,7 @@ DEPENDENCIES
   awesome_print
   capybara
   database_cleaner
-  elasticsearch (~> 8)
+  elasticsearch (~> 7.17.7)
   elasticsearch-dsl
   elasticsearch-model (~> 7)
   elasticsearch-rails (~> 7)
@@ -393,6 +393,9 @@ DEPENDENCIES
   uglifier
   validate_url
   webrick (~> 1.7)
+
+RUBY VERSION
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.4.10

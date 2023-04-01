@@ -1,4 +1,4 @@
-FROM elasticsearch:8.6.2
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.10.2
 
 RUN \
   mkdir -p /usr/share/elasticsearch/config/analysis && \
