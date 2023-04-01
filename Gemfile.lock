@@ -394,5 +394,8 @@ DEPENDENCIES
   validate_url
   webrick (~> 1.7)
 
+RUBY VERSION
+   ruby 3.2.1p31
+
 BUNDLED WITH
    2.4.10
