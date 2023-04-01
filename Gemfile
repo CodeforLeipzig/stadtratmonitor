@@ -6,7 +6,7 @@ gem 'rails', '~> 7.0.4'
 gem 'rails-i18n'
 
 # database and search index
-gem 'elasticsearch', '~> 7.17.7'
+gem 'elasticsearch', '~> 7.10.1'
 gem 'elasticsearch-dsl'
 gem 'elasticsearch-model', '~> 7'
 gem 'elasticsearch-rails', '~> 7'

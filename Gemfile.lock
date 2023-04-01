@@ -99,10 +99,10 @@ GEM
     date (3.3.3)
     diff-lcs (1.5.0)
     docile (1.4.0)
-    elasticsearch (7.17.7)
-      elasticsearch-api (= 7.17.7)
-      elasticsearch-transport (= 7.17.7)
-    elasticsearch-api (7.17.7)
+    elasticsearch (7.10.1)
+      elasticsearch-api (= 7.10.1)
+      elasticsearch-transport (= 7.10.1)
+    elasticsearch-api (7.10.1)
       multi_json
     elasticsearch-dsl (0.1.10)
     elasticsearch-model (7.2.1)
@@ -110,7 +110,7 @@ GEM
       elasticsearch (~> 7)
       hashie
     elasticsearch-rails (7.2.1)
-    elasticsearch-transport (7.17.7)
+    elasticsearch-transport (7.10.1)
       faraday (~> 1)
       multi_json
     erubi (1.12.0)
@@ -377,7 +377,7 @@ DEPENDENCIES
   awesome_print
   capybara
   database_cleaner
-  elasticsearch (~> 7.17.7)
+  elasticsearch (~> 7.10.1)
   elasticsearch-dsl
   elasticsearch-model (~> 7)
   elasticsearch-rails (~> 7)
