@@ -362,7 +362,6 @@ GEM
     validate_url (1.0.15)
       activemodel (>= 3.0.0)
       public_suffix
-    webrick (1.8.1)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -394,7 +393,7 @@ DEPENDENCIES
   omniauth-browserid
   pry
   pry-rails
-  puma (~> 6.2.1)
+  puma
   rails (~> 7.0.4)
   rails-controller-testing
   rails-i18n
@@ -412,7 +411,6 @@ DEPENDENCIES
   turbolinks
   uglifier
   validate_url
-  webrick (~> 1.7)
 
 RUBY VERSION
    ruby 3.2.2p53
