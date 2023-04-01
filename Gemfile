@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby "3.1.4"
+
 gem 'rails', '~> 7.0.4'
 gem 'rails-i18n'
 
