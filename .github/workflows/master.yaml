@@ -17,6 +17,7 @@ jobs:
 #      - run: docker-compose run web bin/run-tests
       - uses: akhileshns/heroku-deploy@v3.12.13
         with:
+          branch: "master"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "stadtratmonitor"
