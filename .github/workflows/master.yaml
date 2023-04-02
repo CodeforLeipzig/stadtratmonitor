@@ -13,7 +13,7 @@ jobs:
 #      - run: docker-compose build
 #      - run: docker-compose run web rake db:setup
 #      - run: docker-compose run web bin/run-tests
-      - uses: actions/heroku@main
+      - uses: akhileshns/heroku-deploy@v3.12.13
         with:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
