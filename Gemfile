@@ -21,10 +21,13 @@ gem 'omniauth'
 gem 'omniauth-browserid'
 
 # templates, css and other frontend related
-gem 'foundation-rails', '~> 6.5'
+gem 'cssbundling-rails'
 gem 'jquery-rails'
-gem 'sass-rails'
-gem 'sassc', '~> 2.1.0'
+gem 'bootstrap'
+gem "sass", "~> 3.7"
+gem 'sassc'
+gem 'sassc-rails'
+gem "importmap-rails", "~> 1.1"
 gem 'slim-rails'
 gem 'turbolinks'
 gem 'uglifier'

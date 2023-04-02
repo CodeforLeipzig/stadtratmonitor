@@ -14,6 +14,16 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
-//=require_tree ../../../app/assets/stylesheets/public
+//= require bootstrap.min
+//=require_tree ../../../app/assets/stylesheets
 
-$(function(){ $(document).foundation(); });
+import * as bootstrap from "bootstrap"
+import jquery from "jquery"
+import "foundation-sites"
+
+window.jQuery = jquery
+window.$ = jquery
+
+$(function() {
+  $(document).foundation();
+});

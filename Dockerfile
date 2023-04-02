@@ -9,7 +9,6 @@ RUN apt-get update && \
   apt-get install -y build-essential zlib1g-dev libsqlite3-dev nodejs npm \
   libxml2-dev libxslt1-dev pkg-config google-chrome-stable
 
-
 ENV DOCKERIZE_VERSION v0.6.1
 RUN curl -sSLO https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
@@ -27,6 +26,8 @@ RUN bundle install
 
 ADD . /app
 WORKDIR /app
+
+RUN npm install -g yarn
 
 COPY ./docker-entrypoint.sh /
 RUN chmod +x docker-entrypoint.sh

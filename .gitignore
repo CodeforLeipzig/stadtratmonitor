@@ -18,3 +18,5 @@ config/morph.yml
 /coverage
 .vagrant
 /node_modules
+/app/assets/builds/*
+!/app/assets/builds/.keep
