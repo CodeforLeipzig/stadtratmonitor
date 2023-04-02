@@ -59,6 +59,7 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'coveralls'
   gem 'rails-controller-testing'
   gem 'rubocop-faker'
   gem 'shoulda-matchers', '~> 3.1'
