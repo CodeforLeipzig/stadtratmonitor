@@ -1,13 +1,13 @@
-FROM amd64/ruby:3.2.2-bullseye
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y curl
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - 
+
+RUN apt-get update && apt-get install -y ruby ruby-dev ruby-bundler \
+  build-essential zlib1g-dev libsqlite3-dev libxml2-dev libxslt1-dev pkg-config nodejs
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 RUN gem install bundler
-
-# Add google package repository for google chrome
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
-
-RUN apt-get update && \
-  apt-get install -y build-essential zlib1g-dev libsqlite3-dev nodejs npm \
-  libxml2-dev libxslt1-dev pkg-config google-chrome-stable
 
 ENV DOCKERIZE_VERSION v0.6.1
 RUN curl -sSLO https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
@@ -19,7 +19,7 @@ RUN mkdir -p /app
 WORKDIR /tmp
 
 COPY Gemfile Gemfile
-#COPY Gemfile.lock Gemfile.lock
+COPY Gemfile.lock Gemfile.lock
 RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle update
 RUN bundle install
@@ -27,7 +27,7 @@ RUN bundle install
 ADD . /app
 WORKDIR /app
 
-RUN npm install -g yarn
+RUN npm install -g yarn sass
 
 COPY ./docker-entrypoint.sh /
 RUN chmod +x docker-entrypoint.sh

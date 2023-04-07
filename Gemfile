@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "3.2.2"
+ruby "3.0.2"
 
 gem 'rails', '~> 7.0.4'
 gem 'rails-i18n'
@@ -25,9 +25,6 @@ gem 'cssbundling-rails'
 gem "jsbundling-rails", "~> 1.1"
 gem 'jquery-rails'
 gem 'bootstrap'
-gem "sass", "~> 3.7"
-gem 'sassc'
-gem 'sassc-rails'
 gem "importmap-rails", "~> 1.1"
 gem 'slim-rails'
 gem 'turbolinks'
@@ -66,3 +63,7 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', require: false
 end
+
+gem "dartsass", "~> 1.49"
+
+gem "tzinfo-data", "~> 1.2023"

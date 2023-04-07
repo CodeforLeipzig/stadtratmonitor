@@ -73,9 +73,10 @@ rake assets:clean
 rake assets:clobber
 rake tmp:clear
 
-rails css:install:bootstrap
-sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --load-path=node_modules
-rails javascript:install:esbuild
+npm install -g sass
+#rails css:install:bootstrap
+#rails javascript:install:esbuild
+rake assets:precompile 
 ```
 
 
