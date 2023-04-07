@@ -1,4 +1,4 @@
-FROM ruby:3.2.2
+FROM amd64/ruby:3.2.2-bullseye
 RUN gem install bundler
 
 # Add google package repository for google chrome
@@ -19,7 +19,7 @@ RUN mkdir -p /app
 WORKDIR /tmp
 
 COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
+#COPY Gemfile.lock Gemfile.lock
 RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle update
 RUN bundle install

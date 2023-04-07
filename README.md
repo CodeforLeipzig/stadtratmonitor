@@ -1,7 +1,5 @@
 # Stadtratmonitor
 
-[![Build Status](https://travis-ci.org/CodeforLeipzig/stadtratmonitor.png?branch=master)](https://travis-ci.org/CodeforLeipzig/stadtratmonitor) [![Coverage Status](https://coveralls.io/repos/github/CodeforLeipzig/stadtratmonitor/badge.svg?branch=master)](https://coveralls.io/github/CodeforLeipzig/stadtratmonitor?branch=master)
-
 **Offical site:** https://stadtratmonitor.leipzig.codefor.de/
 
 ## Usage / Features
@@ -69,6 +67,17 @@ docker.
 1. See "Importing data" below
 1. Get the address of the docker host: `docker-machine ip default`
 1. Point your browser to: 'http://\<IP of docker host\>:3000'
+
+```
+rake assets:clean
+rake assets:clobber
+rake tmp:clear
+
+rails css:install:bootstrap
+sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --load-path=node_modules
+rails javascript:install:esbuild
+```
+
 
 ### Importing data and building the index
 1. Currently an API key for morph is required:

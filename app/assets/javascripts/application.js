@@ -10,20 +10,4 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require foundation
-//= require turbolinks
-//= require bootstrap.min
-//=require_tree ../../../app/assets/stylesheets
-
 import * as bootstrap from "bootstrap"
-import jquery from "jquery"
-import "foundation-sites"
-
-window.jQuery = jquery
-window.$ = jquery
-
-$(function() {
-  $(document).foundation();
-});

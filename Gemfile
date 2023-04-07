@@ -22,6 +22,7 @@ gem 'omniauth-browserid'
 
 # templates, css and other frontend related
 gem 'cssbundling-rails'
+gem "jsbundling-rails", "~> 1.1"
 gem 'jquery-rails'
 gem 'bootstrap'
 gem "sass", "~> 3.7"
