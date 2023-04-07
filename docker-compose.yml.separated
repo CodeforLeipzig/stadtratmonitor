@@ -1,0 +1,28 @@
+version: "3.7"
+volumes:
+  elasticsearch:
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+#    links:
+#      - elasticsearch
+    environment:
+      ELASTICSEARCH_URL: 'http://leipzig-giesst.de:9200'
+  elasticsearch:
+    build: ./docker/elasticsearch
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+  elastichq:
+    image: elastichq/elasticsearch-hq
+    ports:
+      - "5000:5000"
+#    links:
+#      - elasticsearch
