@@ -4,7 +4,7 @@
 
 ## Usage / Features
 
-The Stadtratmonitor Leipzig is a lightweight user interface for performing full text searches against paper contents issued to the city council of Leipzig. Note, this solution uses the data from [Ratsinformationssystem Leipzig](https://ratsinfo.leipzig.de/bi/allris.net.asp) that also offers [text search capabilities](https://ratsinfo.leipzig.de/bi/yw010.asp).
+The Stadtratmonitor Leipzig is a lightweight user interface for performing full text searches against paper contents issued to the city council of Leipzig. Note, this solution uses the data from [Ratsinformationssystem Leipzig](https://ratsinformation.leipzig.de/allris_leipzig_public/) that also offers [text search capabilities](https://ratsinformation.leipzig.de/allris_leipzig_public/vo040).
 
 ### Sorting
  * Sort by date, paper was issued
@@ -34,7 +34,7 @@ The Stadtratmonitor Leipzig is a lightweight user interface for performing full 
   * [Firefox Extension](https://addons.mozilla.org/en-US/firefox/addon/simple-rss-reader-srr)
   * [RSSOWL](http://www.rssowl.org/)
 
-#### Example using Firefox and RSSOWL   
+#### Example using Firefox and RSSOWL
 Click on the newsfeed icon in the address bar
 ![Abonnieren mit Firefox](https://cloud.githubusercontent.com/assets/994131/14060508/fe7f4514-f366-11e5-85ae-2fa2e50b91ea.JPG)
 
@@ -63,7 +63,7 @@ docker.
 
 1. Install docker and docker-compose: https://docs.docker.com/compose/install/
 1. Start the app: `docker-compose up`
-1. Initialize the database: `docker-compose run web rake db:setup`
+1. Initialize the database: `docker-compose run --user srm web rake db:setup'`
 1. See "Importing data" below
 1. Get the address of the docker host: `docker-machine ip default`
 1. Point your browser to: 'http://\<IP of docker host\>:3000'
@@ -76,19 +76,19 @@ rake tmp:clear
 npm install -g sass
 #rails css:install:bootstrap
 #rails javascript:install:esbuild
-rake assets:precompile 
+rake assets:precompile
 ```
 
 
 ### Importing data and building the index
-1. Currently an API key for morph is required:
-   `cp config/morph.yml.example config/morph.yml`
-   Edit the morph.yml file and insert the Morph API key
-1. Import the data from our scraper: `docker-compose run web rake import_papers`
-1. Build the elasticsearch index: `docker-compose run web rake index:rebuild`
+1. You can use [our allris-scraper](https://github.com/CodeforLeipzig/allris-scraper) to download the papers (resp. their links) from the [OPARL](https://oparl.org/) API, this will produce an input.json file
+1. Put this input.json to a public web server and set the URL to this file then in:
+   `app/controllers/import_controller.rb` and `lib/tasks/import_papers.rake`
+1. Import the data from our scraper: `docker-compose run --user srm web rake import_papers'`
+1. Build the elasticsearch index: `docker-compose run --user srm web rake index:rebuild'`
 
 ### Running tests
 
 Assuming docker and docker-compose is installed:
 
-1. `docker-compose run web bin/run-tests`
+1. `docker-compose run --user srm web bin/run-tests`

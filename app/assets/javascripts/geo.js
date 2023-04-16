@@ -6,16 +6,16 @@ function geojsonDaten() {
         "type": "Feature",
         "properties": {
           "name": "Stadtbezirksbeirat Mitte",
-          "raum": "Neues Rathaus, Zi. 495",
-          "ort": "Martin-Luther-Ring 4-6, 04109 Leipzig",
+          "raum": "Stadtbüro",
+          "ort": "Burgplatz 1, 04109 Leipzig",
           "typ": "Stadtbezirksbeirat",
           "id": "2350"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            12.3726786,
-            51.3360228
+            12.3727021,
+            51.3370619
           ]
         }
       },
@@ -23,16 +23,16 @@ function geojsonDaten() {
         "type": "Feature",
         "properties": {
           "name": "Stadtbezirksbeirat Nordost",
-          "raum": "Rathaus Schönefeld, Raum 100",
-          "ort": "Ossietzkystraße 37, 04347 Leipzig",
+          "raum": "KulturGut Schloss Schönefeld",
+          "ort": "Zeumerstraße 1, 04347 Leipzig",
           "typ": "Stadtbezirksbeirat",
           "id": "2284"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            12.4106166658912,
-            51.35950645
+            12.407042064270335,
+            51.35905225
           ]
         }
       },
@@ -40,16 +40,16 @@ function geojsonDaten() {
         "type": "Feature",
         "properties": {
           "name": "Stadtbezirksbeirat Ost",
-          "raum": "IC-E Informationszentrum",
-          "ort": "Eisenbahnstraße 49, 04315 Leipzig",
+          "raum": "BSZ 7 - Außenstelle",
+          "ort": "Neustädter Straße 1, 04315 Leipzig",
           "typ": "Stadtbezirksbeirat",
           "id": "2295"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            12.4022556,
-            51.3458445
+            12.399940740484912,
+            51.344629850000004
           ]
         }
       },
@@ -74,7 +74,7 @@ function geojsonDaten() {
         "type": "Feature",
         "properties": {
           "name": "Stadtbezirksbeirat Süd",
-          "raum": "Immanuel-Kant-Gymnasium, Zi. 024",
+          "raum": "Immanuel-Kant-Gymnasium, Zi. 408",
           "ort": "Scharnhorststraße 15, 04275 Leipzig",
           "typ": "Stadtbezirksbeirat",
           "id": "2369"
@@ -91,16 +91,16 @@ function geojsonDaten() {
         "type": "Feature",
         "properties": {
           "name": "Stadtbezirksbeirat Südwest",
-          "raum": "Schule am Adler - Oberschule, Erdgeschoss - Raum 10",
-          "ort": "Antonienstraße 24, 04229 Leipzig",
+          "raum": "Schule am Grünen Gleis",
+          "ort": "Baumannstraße 13, 04229 Leipzig",
           "typ": "Stadtbezirksbeirat",
           "id": "2309"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            12.3293545312521,
-            51.3209155
+            12.323566707065215,
+            51.3176798
           ]
         }
       },
@@ -159,16 +159,16 @@ function geojsonDaten() {
         "type": "Feature",
         "properties": {
           "name": "Stadtbezirksbeirat Nord",
-          "raum": "Gohlis-Center, Zi. 340",
-          "ort": "Elsbethstraße 19-25, 04155 Leipzig",
+          "raum": "Kulturhof Gohlis, Kultursaal",
+          "ort": "Eisenacher Straße 72, 04155 Leipzig",
           "typ": "Stadtbezirksbeirat",
           "id": "2272"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            12.3643525,
-            51.3634285
+            12.3592316,
+            51.3623363
           ]
         }
       },
@@ -227,16 +227,16 @@ function geojsonDaten() {
         "type": "Feature",
         "properties": {
           "name": "Ortschaftsrat Hartmannsdorf-Knautnaundorf",
-          "raum": "Gaststätte \"Zur Ratte\"",
-          "ort": "Erikenstraße 10, 04249 Leipzig",
+          "raum": "ehem. Gemeindeamt Knautnaundorf",
+          "ort": "Schkorlopper Straße 34, 04249 Leipzig",
           "typ": "Ortschaftsrat",
           "id": "2283"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            12.3086769,
-            51.2653949
+            12.26865655,
+            51.25494705
           ]
         }
       },
@@ -295,16 +295,16 @@ function geojsonDaten() {
         "type": "Feature",
         "properties": {
           "name": "Ortschaftsrat Lützschena-Stahmeln",
-          "raum": "ehem. Feuerwehrgerätehaus Stahmeln",
-          "ort": "Mühlenstraße 21, 04159 Leipzig",
+          "raum": "Leipziger Hotel",
+          "ort": "Hallesche Straße 190, 04159 Leipzig",
           "typ": "Ortschaftsrat",
           "id": "2368"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            12.3011131,
-            51.3766107
+            12.2710945,
+            51.3853193
           ]
         }
       },
@@ -312,16 +312,16 @@ function geojsonDaten() {
         "type": "Feature",
         "properties": {
           "name": "Ortschaftsrat Miltitz",
-          "raum": "Grundschule Miltitz, Speiseraum",
-          "ort": "Großmiltitzer Straße 4, 04205 Leipzig",
+          "raum": "Heimatverein Miltitz",
+          "ort": "An der alten Post 1, 04205 Leipzig",
           "typ": "Ortschaftsrat",
           "id": "2365"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            12.2615069,
-            51.319427
+            12.25400846230211,
+            51.32507435
           ]
         }
       },
@@ -346,7 +346,7 @@ function geojsonDaten() {
         "type": "Feature",
         "properties": {
           "name": "Ortschaftsrat Plaußig ",
-          "raum": "Naturschutzstation Plaußig, Schulungsraum",
+          "raum": "Freiwillige Feuerwehr Plaußig - Schulungsraum",
           "ort": "Plaußiger Dorfstraße 23, 04349 Leipzig",
           "typ": "Ortschaftsrat",
           "id": "2377"
@@ -380,16 +380,16 @@ function geojsonDaten() {
         "type": "Feature",
         "properties": {
           "name": "Ortschaftsrat Seehausen",
-          "raum": "Gasthof Hohenheida",
-          "ort": "Am Anger 42, 04356 Leipzig",
+          "raum": "Hort der Grundschule Seehausen",
+          "ort": "Seehausener Allee 15, 04356 Leipzig",
           "typ": "Ortschaftsrat",
           "id": "2312"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            12.4455644647629,
-            51.4203442
+            12.411255135155008,
+            51.40299085
           ]
         }
       },
@@ -469,8 +469,8 @@ function createPopUpContent(properties) {
   content += "<span style=\"text-decoration: underline;\">Raum:</span> "
   content += properties.raum
   content += "<ul>"
-  content += "<li><a href=\"https://ratsinfo.leipzig.de/bi/au020.asp?AULFDNR=" + properties.id + "\">Mitglieder</a></li>"
-  content += "<li><a href=\"https://ratsinfo.leipzig.de/bi/si018_a.asp?GRA=" + properties.id + "\">Sitzungen</a></li>"
+  content += "<li><a href=\"https://ratsinformation.leipzig.de/allris_leipzig_public/gr020?GRLFDNR=" + properties.id + "\">Mitglieder</a></li>"
+  content += "<li><a href=\"https://ratsinformation.leipzig.de/allris_leipzig_public/si018?GRLFDNR=" + properties.id + "\">Sitzungen</a></li>"
   content += "</ul>"
   return content
 }

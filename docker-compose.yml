@@ -1,8 +1,7 @@
 version: "3.7"
-volumes:
-  elasticsearch:
 services:
   web:
+    user: srm
     build: .
     volumes:
       - .:/app
@@ -11,18 +10,28 @@ services:
     links:
       - elasticsearch
     environment:
-      ELASTICSEARCH_URL: 'http://elasticsearch:9200'
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - APPLICATION_HOST=$APPLICATION_HOST
+    command: sh -c "cd /home/srm/app && bundle exec puma -C config/puma.rb"
   elasticsearch:
+    user: elasticsearch
     build: ./docker/elasticsearch
     environment:
       - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ports:
-      - "9200:9200"
+      - "9215:9200"
     volumes:
-      - elasticsearch:/usr/share/elasticsearch/data
+      - $ESDATA:/usr/share/elasticsearch/data //read, write and execute
+      - ./docker/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    command: sh -c "/usr/share/elasticsearch/bin/elasticsearch"
   elastichq:
     image: elastichq/elasticsearch-hq
     ports:
       - "5000:5000"
     links:
       - elasticsearch
+
+volumes:
+  esdata:
