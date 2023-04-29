@@ -12,6 +12,7 @@ services:
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
       - APPLICATION_HOST=$APPLICATION_HOST
+      - SHARED_IMPORT_SECRET=$SHARED_IMPORT_SECRET
     command: sh -c "cd /home/srm/app && bundle exec puma -C config/puma.rb"
   elasticsearch:
     user: elasticsearch

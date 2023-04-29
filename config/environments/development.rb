@@ -41,4 +41,5 @@ Rails.application.configure do
   $stdout.sync = true
 
   config.hosts = ENV['APPLICATION_HOST'] || 'localhost'
+  config.shared_import_secret = ENV['SHARED_IMPORT_SECRET']
 end

@@ -77,4 +77,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.hosts = ENV['APPLICATION_HOST'] || 'stadtratmonitor.leipzig.codefor.de'
+  config.shared_import_secret = ENV['SHARED_IMPORT_SECRET']
 end
