@@ -80,7 +80,7 @@ class Paper < ActiveRecord::Base
     def import_from_json(json_string)
       old_count = count
       JSON.parse(json_string).each do |record|
-        content = truncate(record['content'], 99998)
+        content = record['content'].truncate(99998)
         attributes = {
           body: record['body'],
           content: content,
