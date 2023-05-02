@@ -10,8 +10,8 @@ services:
     links:
       - elasticsearch
     environment:
-      - ELASTICSEARCH_URL=http://elasticsearch:9200
-      - APPLICATION_HOST=$APPLICATION_HOST
+      - ELASTICSEARCH_URL=${ELASTICSEARCH_URL:-http://elasticsearch:9200}
+      - APPLICATION_HOST=${APPLICATION_HOST:-localhost}
       - SHARED_IMPORT_SECRET=$SHARED_IMPORT_SECRET
     command: sh -c "cd /home/srm/app && export PATH=/home/srm/.rbenv/bin:$PATH && eval \"$(~/.rbenv/bin/rbenv init -)\" && bundle install && bundle exec puma -C config/puma.rb"
   elasticsearch:
@@ -24,7 +24,7 @@ services:
     ports:
       - "9215:9200"
     volumes:
-      - $ESDATA:/usr/share/elasticsearch/data //read, write and execute
+      - ${ESDATA:-esdata}:/usr/share/elasticsearch/data //read, write and execute
       - ./docker/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     command: sh -c "/usr/share/elasticsearch/bin/elasticsearch"
   elastichq:
