@@ -13,7 +13,7 @@ services:
       - ELASTICSEARCH_URL=${ELASTICSEARCH_URL:-http://elasticsearch:9200}
       - APPLICATION_HOST=${APPLICATION_HOST:-localhost}
       - SHARED_IMPORT_SECRET=$SHARED_IMPORT_SECRET
-    command: sh -c "cd /home/srm/app && export PATH=/home/srm/.rbenv/bin:$PATH && eval \"$(~/.rbenv/bin/rbenv init -)\" && bundle install && bundle exec puma -C config/puma.rb"
+    command: sh -c "cd /home/srm/app && bundle install && bundle exec puma -C config/puma.rb"
   elasticsearch:
     user: elasticsearch
     build: ./docker/elasticsearch
