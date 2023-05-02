@@ -19,7 +19,7 @@ RUN mkdir -p /home/srm/tmp
 #COPY Gemfile.lock /home/srm/tmp/Gemfile.lock
 
 ARG USER_ID=1000
-RUN groupadd srm && useradd -D --uid $USER_ID -g srm srm
+RUN groupadd srm && useradd --uid $USER_ID -g srm srm
 RUN chown -R srm:srm /home/srm
 USER srm
 
