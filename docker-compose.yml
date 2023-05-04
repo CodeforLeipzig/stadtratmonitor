@@ -1,13 +1,10 @@
 version: "3.7"
 services:
   web:
+    image: ---WIP---
     user: srm
-    build:
-      context: .
-      args: 
-        - USER_ID=${USER_ID:-1000}
     volumes:
-      - .:/home/srm/app/
+      - .:/app/
     ports:
       - "3000:3000"
     links:

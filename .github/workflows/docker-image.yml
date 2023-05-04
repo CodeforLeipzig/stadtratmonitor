@@ -1,0 +1,26 @@
+name: Container Image CI
+
+on:
+  push:
+    branches: [ "rewrite-dockerfile" ]
+  pull_request:
+    branches: [ "rewrite-dockerfile" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build the Base Image
+      run: docker build . --file ./container/base/Dockerfile --tag codeforleipzig-srm-base:$(date +%s)
+
+    - name: Build the Deploy Image
+      run: docker build . --file ./container/deploy/Dockerfile --tag codeforleipzig-srm-deploy:$(date +%s)
+
+    - name: Build the Develop Image
+      run: docker build . --file ./container/develop/Dockerfile --tag codeforleipzig-srm-develop:$(date +%s)
+
+    - name: Build the Test Image
+      run: docker build . --file ./container/test/Dockerfile --tag codeforleipzig-srm-test:$(date +%s)
