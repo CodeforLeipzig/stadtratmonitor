@@ -13,14 +13,37 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Build the Base Image
-      run: docker build . --file ./container/base/Dockerfile --tag codeforleipzig-srm-base:$(date +%s)
+    - name: Log in to Forgejo package registry
+      uses: docker/login-action@v1
+      with:
+        registry: https://code.cozy.town/
+        username: ${{ secrets.FORGEJO_USERNAME }}
+        password: ${{ secrets.FORGEJO_TOKEN }}
 
-    - name: Build the Deploy Image
-      run: docker build . --file ./container/deploy/Dockerfile --tag codeforleipzig-srm-deploy:$(date +%s)
+    - name: Build and push Base image
+      uses: docker/build-push-action@v2
+      with:
+        context: /container/base/
+        push: true
+        tags: https://code.cozy.town/stadtratmonitor/codeforleipzig-srm-base:$(date +%s)
 
-    - name: Build the Develop Image
-      run: docker build . --file ./container/develop/Dockerfile --tag codeforleipzig-srm-develop:$(date +%s)
+    - name: Build and push Deploy image
+      uses: docker/build-push-action@v2
+      with:
+        context: /container/deploy/
+        push: true
+        tags: https://code.cozy.town/stadtratmonitor/codeforleipzig-srm-deploy:$(date +%s)
 
-    - name: Build the Test Image
-      run: docker build . --file ./container/test/Dockerfile --tag codeforleipzig-srm-test:$(date +%s)
+    - name: Build and push Develop image
+      uses: docker/build-push-action@v2
+      with:
+        context: /container/develop/
+        push: true
+        tags: https://code.cozy.town/stadtratmonitor/codeforleipzig-srm-develop:$(date +%s)
+
+    - name: Build and push Test image
+      uses: docker/build-push-action@v2
+      with:
+        context: /container/test/
+        push: true
+        tags: https://code.cozy.town/stadtratmonitor/codeforleipzig-srm-test:$(date +%s)
