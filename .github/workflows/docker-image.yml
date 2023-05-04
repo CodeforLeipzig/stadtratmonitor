@@ -25,25 +25,25 @@ jobs:
       with:
         context: /container/base/
         push: true
-        tags: https://code.cozy.town/stadtratmonitor/codeforleipzig-srm-base:$(date +%s)
+        tags: codeforleipzig/stadtratmonitor-base:latest
 
     - name: Build and push Deploy image
       uses: docker/build-push-action@v2
       with:
         context: /container/deploy/
         push: true
-        tags: https://code.cozy.town/stadtratmonitor/codeforleipzig-srm-deploy:$(date +%s)
+        tags: codeforleipzig/stadtratmonitor-deploy:latest
 
     - name: Build and push Develop image
       uses: docker/build-push-action@v2
       with:
         context: /container/develop/
         push: true
-        tags: https://code.cozy.town/stadtratmonitor/codeforleipzig-srm-develop:$(date +%s)
+        tags: codeforleipzig/stadtratmonitor-develop:latest
 
     - name: Build and push Test image
       uses: docker/build-push-action@v2
       with:
         context: /container/test/
         push: true
-        tags: https://code.cozy.town/stadtratmonitor/codeforleipzig-srm-test:$(date +%s)
+        tags: codeforleipzig/stadtratmonitor-test:latest
