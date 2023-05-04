@@ -20,19 +20,8 @@ RUN mkdir -p /home/srm/tmp
 
 ARG USER_ID=1000
 RUN groupadd srm && useradd --uid $USER_ID -g srm srm
-RUN chown -R srm:srm /home/srm
-USER srm
 
-WORKDIR /home/srm
-
-RUN git clone https://github.com/sstephenson/rbenv.git .rbenv
-RUN git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-
-RUN echo 'export PATH="/home/srm/.rbenv/bin:$PATH"' >> .bashrc && echo 'eval "$(~/.rbenv/bin/rbenv init -)"' >> .bashrc && . ~/.bashrc
-RUN /home/srm/.rbenv/bin/rbenv install 3.2.2
-RUN /home/srm/.rbenv/bin/rbenv rehash
-RUN /home/srm/.rbenv/bin/rbenv global 3.2.2
-
+WORKDIR /home/srm/
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
@@ -49,25 +38,25 @@ ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 RUN gem install bundler
 
-RUN mkdir -p /home/srm/app
-ADD . /home/srm/app
-USER root
-RUN chown -R srm:srm /home/srm/app
+WORKDIR /
+RUN mkdir -p /home/srm/build/
+WORKDIR /home/srm/build/
 
-USER srm
-WORKDIR /home/srm/app
+COPY bin/ bin/
+COPY Gemfile Gemfile
+COPY config/ config/
+COPY config.ru config.ru
+COPY package.json package.json
 
-RUN bundle config build.nokogiri --use-system-libraries
+RUN npm install -g yarn sass
 RUN bundle update
 RUN bundle install
 
-COPY package.json package.json
-USER root
-RUN chown -R srm:srm package.json
+WORKDIR /
+RUN mkdir -p /home/srm/app/
+VOLUME /home/srm/app/
+RUN chown -R srm:srm /home/srm/
+
 USER srm
-
-RUN npm install -g yarn sass
-
 EXPOSE 3000
-ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["bundle", "exec", "puma" "-C", "config/puma.rb"]
+CMD bundle exec puma -C /home/srm/build/config/puma.rb
