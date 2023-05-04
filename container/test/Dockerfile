@@ -2,7 +2,7 @@
 # ~~~ TEST IMAGE ~~~
 # ~~~~~~~~~~~~~~~~~~~~~
 
-FROM base AS testing
+FROM code.cozy.town/codeforleipzig/stadtratmonitor:latest-base
 
 RUN bundle update
 RUN bundle install

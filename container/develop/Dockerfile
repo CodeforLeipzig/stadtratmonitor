@@ -2,7 +2,7 @@
 # ~~~ DEVELOP IMAGE ~~~
 # ~~~~~~~~~~~~~~~~~~~~~
 
-FROM base AS development
+FROM code.cozy.town/codeforleipzig/stadtratmonitor:latest-base
 
 RUN bundle config without test
 RUN bundle update

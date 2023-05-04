@@ -2,7 +2,7 @@
 # ~~~ BASE IMAGE ~~~
 # ~~~~~~~~~~~~~~~~~~
 
-FROM docker.io/ruby:3.2.2-alpine3.17 AS base
+FROM docker.io/ruby:3.2.2-alpine3.17
 
 RUN apk update && apk add \
     build-base \
