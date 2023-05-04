@@ -1,8 +1,7 @@
 version: "3.7"
 services:
   web:
-    image: ---WIP---
-    user: srm
+    image: code.cozy.town/codeforleipzig/stadtratmonitor:latest-develop
     volumes:
       - .:/app/
     ports:
@@ -13,7 +12,7 @@ services:
       - ELASTICSEARCH_URL=${ELASTICSEARCH_URL:-http://elasticsearch:9200}
       - APPLICATION_HOST=${APPLICATION_HOST:-localhost}
       - SHARED_IMPORT_SECRET=$SHARED_IMPORT_SECRET
-    command: ls -lah /home/srm/
+    #command: ls -lah /home/srm/
   elasticsearch:
     user: elasticsearch
     build: ./docker/elasticsearch
