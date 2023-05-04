@@ -26,8 +26,8 @@ RUN chown -R srm:srm /home/srm/
 
 WORKDIR /home/srm/build/
 
-COPY ./Gemfile Gemfile
-COPY ./package.json package.json
+COPY ../../Gemfile Gemfile
+COPY ../../package.json package.json
 
 RUN npm install -g yarn sass
 RUN bundle config without development test
