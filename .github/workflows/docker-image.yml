@@ -23,27 +23,31 @@ jobs:
     - name: Build and push Base image
       uses: docker/build-push-action@v2
       with:
-        context: ./container/base/
+        context: .
+        file: ./container/base/Dockerfile
         push: true
         tags: codeforleipzig/stadtratmonitor-base:latest
 
     - name: Build and push Deploy image
       uses: docker/build-push-action@v2
       with:
-        context: ./container/deploy/
+        context: .
+        file: ./container/deploy/Dockerfile
         push: true
         tags: codeforleipzig/stadtratmonitor-deploy:latest
 
     - name: Build and push Develop image
       uses: docker/build-push-action@v2
       with:
-        context: ./container/develop/
+        context: .
+        file: ./container/develtop/Dockerfile
         push: true
         tags: codeforleipzig/stadtratmonitor-develop:latest
 
     - name: Build and push Test image
       uses: docker/build-push-action@v2
       with:
-        context: ./container/test/
+        context: .
+        file: ./container/test/Dockerfile
         push: true
         tags: codeforleipzig/stadtratmonitor-test:latest
