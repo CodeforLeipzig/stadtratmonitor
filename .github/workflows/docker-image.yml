@@ -26,7 +26,7 @@ jobs:
         context: .
         file: ./container/base/Dockerfile
         push: true
-        tags: codeforleipzig/stadtratmonitor-base:latest
+        tags: codeforleipzig/stadtratmonitor:latest
 
     - name: Build and push Deploy image
       uses: docker/build-push-action@v2
