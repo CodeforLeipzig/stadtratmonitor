@@ -63,7 +63,7 @@ docker.
 
 1. Install docker and docker-compose: https://docs.docker.com/compose/install/
 1. Start the app: `docker-compose up`
-1. Initialize the database: `docker-compose run --user srm web rake db:setup'`
+1. Initialize the database: `docker-compose run --user srm web rake db:setup`
 1. See "Importing data" below
 1. Get the address of the docker host: `docker-machine ip default`
 1. Point your browser to: 'http://\<IP of docker host\>:3000'
@@ -84,8 +84,8 @@ rake assets:precompile
 1. You can use [our allris-scraper](https://github.com/CodeforLeipzig/allris-scraper) to download the papers (resp. their links) from the [OPARL](https://oparl.org/) API, this will produce an input.json file
 1. Put this input.json to a public web server and set the URL to this file then in:
    `app/controllers/import_controller.rb` and `lib/tasks/import_papers.rake`
-1. Import the data from our scraper: `docker-compose run --user srm web rake import_papers'`
-1. Build the elasticsearch index: `docker-compose run --user srm web rake index:rebuild'`
+1. Import the data from our scraper: `docker-compose run --user srm web rake import_papers`
+1. Build the elasticsearch index: `docker-compose run --user srm web rake index:rebuild`
 
 ### Running tests
 
