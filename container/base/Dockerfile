@@ -31,5 +31,4 @@ COPY package.json package.json
 
 RUN npm install -g yarn sass
 RUN bundle config without development test
-RUN bundle update
 RUN bundle install

@@ -4,7 +4,6 @@
 
 FROM code.cozy.town/codeforleipzig/stadtratmonitor/base:latest
 
-RUN bundle update
 RUN bundle install
 
 WORKDIR /home/srm/app/
