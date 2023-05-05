@@ -4,7 +4,7 @@
 
 FROM code.cozy.town/codeforleipzig/stadtratmonitor/base:latest
 
-WORKDIR /app/
+WORKDIR /
 
 USER srm
 EXPOSE 3000
