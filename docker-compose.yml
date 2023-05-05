@@ -2,6 +2,7 @@ version: "3.7"
 services:
   web:
     image: code.cozy.town/codeforleipzig/stadtratmonitor/develop:latest
+    container_name: stadtratmonitor-web
     volumes:
       - .:/app/
     ports:
@@ -10,7 +11,10 @@ services:
       - ELASTICSEARCH_URL=${ELASTICSEARCH_URL:-http://elasticsearch:9200}
       - APPLICATION_HOST=${APPLICATION_HOST:-localhost}
       - SHARED_IMPORT_SECRET=$SHARED_IMPORT_SECRET
+    networks:
+      - stadtratmonitor
   elasticsearch:
+    container_name: stadtratmonitor-elasticsearch
     user: elasticsearch
     build: ./docker/elasticsearch
     environment:
@@ -23,10 +27,15 @@ services:
       - ${ESDATA:-esdata}:/usr/share/elasticsearch/data //read, write and execute
       - ./docker/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     command: sh -c "/usr/share/elasticsearch/bin/elasticsearch"
+    networks:
+      - stadtratmonitor
   elastichq:
+    container_name: stadtratmonitor-elastichq
     image: elastichq/elasticsearch-hq
     ports:
       - "127.0.0.1:5000:5000"
 
 volumes:
   esdata:
+networks:
+  stadtratmonitor:
