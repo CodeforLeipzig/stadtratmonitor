@@ -5,14 +5,11 @@ services:
     volumes:
       - .:/app/
     ports:
-      - "3000:3000"
-    links:
-      - elasticsearch
+      - "127.0.0.1:3000:3000"
     environment:
       - ELASTICSEARCH_URL=${ELASTICSEARCH_URL:-http://elasticsearch:9200}
       - APPLICATION_HOST=${APPLICATION_HOST:-localhost}
       - SHARED_IMPORT_SECRET=$SHARED_IMPORT_SECRET
-    #command: ls -lah /home/srm/
   elasticsearch:
     user: elasticsearch
     build: ./docker/elasticsearch
@@ -21,7 +18,7 @@ services:
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ports:
-      - "9215:9200"
+      - "127.0.0.1:9215:9200"
     volumes:
       - ${ESDATA:-esdata}:/usr/share/elasticsearch/data //read, write and execute
       - ./docker/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
@@ -29,9 +26,7 @@ services:
   elastichq:
     image: elastichq/elasticsearch-hq
     ports:
-      - "5000:5000"
-    links:
-      - elasticsearch
+      - "127.0.0.1:5000:5000"
 
 volumes:
   esdata:
