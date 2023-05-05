@@ -20,11 +20,9 @@ ARG USER_ID=1000
 RUN addgroup srm && \
     adduser --disabled-password --uid $USER_ID --ingroup srm srm
 
-RUN mkdir -p /home/srm/build/
-RUN mkdir -p /home/srm/app/
-RUN chown -R srm:srm /home/srm/
+RUN mkdir -p /app/
 
-WORKDIR /home/srm/build/
+WORKDIR /app/
 
 COPY Gemfile Gemfile
 COPY package.json package.json
