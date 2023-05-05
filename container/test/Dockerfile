@@ -4,7 +4,8 @@
 
 FROM code.cozy.town/codeforleipzig/stadtratmonitor/base:latest
 
-RUN bundle install
+RUN bundle config without reset_dummy_group
+RUN bundle install --prefer-local
 
 WORKDIR /
 
