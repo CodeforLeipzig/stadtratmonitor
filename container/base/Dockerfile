@@ -25,6 +25,7 @@ RUN mkdir -p /app/
 WORKDIR /app/
 
 COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
 COPY package.json package.json
 
 RUN npm install -g yarn sass
