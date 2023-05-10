@@ -1,10 +1,13 @@
-name: Container Image CI
+name: Build Container Images
 
 on:
   push:
-    branches: [ "rewrite-dockerfile" ]
-  pull_request:
-    branches: [ "rewrite-dockerfile" ]
+    paths:
+      - '.github/container-images.yml'
+      - 'container/**'
+      - 'Gemfile'
+      - 'Gemfile.lock'
+      - 'package.json'
 
 jobs:
   build:
