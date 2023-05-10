@@ -1,23 +1,20 @@
 version: "3.7"
 services:
   web:
-    user: srm
-    build:
-      context: .
-      args: 
-        - USER_ID=${USER_ID:-1000}
+    image: code.cozy.town/codeforleipzig/stadtratmonitor/develop:latest
+    container_name: stadtratmonitor-web
     volumes:
-      - .:/app
+      - .:/app/
     ports:
-      - "3000:3000"
-    links:
-      - elasticsearch
+      - "127.0.0.1:3000:3000"
     environment:
       - ELASTICSEARCH_URL=${ELASTICSEARCH_URL:-http://elasticsearch:9200}
       - APPLICATION_HOST=${APPLICATION_HOST:-localhost}
       - SHARED_IMPORT_SECRET=$SHARED_IMPORT_SECRET
-    command: sh -c "cd /home/srm/app && bundle install && bundle exec puma -C config/puma.rb"
+    networks:
+      - stadtratmonitor
   elasticsearch:
+    container_name: stadtratmonitor-elasticsearch
     user: elasticsearch
     build: ./docker/elasticsearch
     environment:
@@ -25,17 +22,20 @@ services:
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ports:
-      - "9215:9200"
+      - "127.0.0.1:9215:9200"
     volumes:
       - ${ESDATA:-esdata}:/usr/share/elasticsearch/data //read, write and execute
       - ./docker/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     command: sh -c "/usr/share/elasticsearch/bin/elasticsearch"
+    networks:
+      - stadtratmonitor
   elastichq:
+    container_name: stadtratmonitor-elastichq
     image: elastichq/elasticsearch-hq
     ports:
-      - "5000:5000"
-    links:
-      - elasticsearch
+      - "127.0.0.1:5000:5000"
 
 volumes:
   esdata:
+networks:
+  stadtratmonitor:

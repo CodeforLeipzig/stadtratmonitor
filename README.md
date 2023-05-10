@@ -1,9 +1,8 @@
 # Stadtratmonitor
 
-**Offical site:** https://stadtratmonitor.leipzig.codefor.de/
+**Offical site:** [stadtratmonitor.leipzig.codefor.de](https://stadtratmonitor.leipzig.codefor.de/)
 
 ## Usage / Features
-
 The Stadtratmonitor Leipzig is a lightweight user interface for performing full text searches against paper contents issued to the city council of Leipzig. Note, this solution uses the data from [Ratsinformationssystem Leipzig](https://ratsinformation.leipzig.de/allris_leipzig_public/) that also offers [text search capabilities](https://ratsinformation.leipzig.de/allris_leipzig_public/vo040).
 
 ### Sorting
@@ -47,48 +46,28 @@ Create a new Feed in RSSOWL and paste the just copied URL in the form
 When updating the feed in RSSOWL (or any other RSS reader of your choice) time after time all new papers matching the search query criteria will appear.
 
 ## Setup
-
 There are two ways to run this app: using a local development setup, or using
 docker.
 
 ### Local machine setup
 1. Install Ruby, Bundler, Elasticsearch
-1. Start Elasticsearch: `elasticsearch`
-1. Setup Rails app: `bundle && bundle exec rake db:setup`
-1. See "Importing data" below
-1. Start Rails server: `bundle exec rails s`
-1. Visit [http://localhost:3000](http://localhost:3000)
+2. Start Elasticsearch: `elasticsearch`
+3. Setup Rails app: `bundle && bundle exec rake db:setup`
+4. See “[Importing data via Allris Scraper](#importing-data-via-allris-scraper-optional)” below
+5. Start Rails server: `bundle exec rails s`
+6. Open [localhost:3000](http://localhost:3000)
 
-### Using docker
+### Using Container (Docker/Podman/…) 
+1. [Install Docker and Docker Compose](https://docs.docker.com/compose/install/)
+2. Start the application: `docker-compose up`
+3. Initialize the database: `docker exec stadtratmonitor-web sh -c "rake db:setup && rake import_papers && rake index:rebuild"`
+4. Open [localhost:3000](http://localhost:3000)
 
-1. Install docker and docker-compose: https://docs.docker.com/compose/install/
-1. Start the app: `docker-compose up`
-1. Initialize the database: `docker-compose run --user srm web rake db:setup`
-1. See "Importing data" below
-1. Get the address of the docker host: `docker-machine ip default`
-1. Point your browser to: 'http://\<IP of docker host\>:3000'
-
-```
-rake assets:clean
-rake assets:clobber
-rake tmp:clear
-
-npm install -g sass
-#rails css:install:bootstrap
-#rails javascript:install:esbuild
-rake assets:precompile
-```
-
-
-### Importing data and building the index
-1. You can use [our allris-scraper](https://github.com/CodeforLeipzig/allris-scraper) to download the papers (resp. their links) from the [OPARL](https://oparl.org/) API, this will produce an input.json file
-1. Put this input.json to a public web server and set the URL to this file then in:
+### Importing data via Allris Scraper (optional)
+1. You can use [our Allris Scraper](https://github.com/CodeforLeipzig/allris-scraper) to download the papers (resp. their links) from the [OPARL](https://oparl.org/) API, this will produce an input.json file
+2. Put this input.json to a public web server and set the URL to this file then in:
    `app/controllers/import_controller.rb` and `lib/tasks/import_papers.rake`
-1. Import the data from our scraper: `docker-compose run --user srm web rake import_papers`
-1. Build the elasticsearch index: `docker-compose run --user srm web rake index:rebuild`
 
 ### Running tests
-
 Assuming docker and docker-compose is installed:
-
-1. `docker-compose run --user srm web bin/run-tests`
+1. `docker-compose run web bin/run-tests`
