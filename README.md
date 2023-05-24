@@ -57,11 +57,13 @@ docker.
 5. Start Rails server: `bundle exec rails s`
 6. Open [localhost:3000](http://localhost:3000)
 
-### Using Container (Docker/Podman/…) 
-1. [Install Docker and Docker Compose](https://docs.docker.com/compose/install/)
-2. Start the application: `docker-compose up`
-3. Initialize the database: `docker exec stadtratmonitor-web sh -c "rake db:setup && rake import_papers && rake index:rebuild"`
-4. Open [localhost:3000](http://localhost:3000)
+### Using Container (Docker/Podman/…)
+1. [Install Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable)
+2. Build the application: `yarn && yarn build:css`
+3. [Install Docker and Docker Compose](https://docs.docker.com/compose/install/)
+4. Start the application: `docker-compose up`
+5. Initialize the database: `docker exec stadtratmonitor-web sh -c "rake db:setup && rake import_papers && rake index:rebuild"`
+6. Open [localhost:3000](http://localhost:3000)
 
 ### Importing data via Allris Scraper (optional)
 1. You can use [our Allris Scraper](https://github.com/CodeforLeipzig/allris-scraper) to download the papers (resp. their links) from the [OPARL](https://oparl.org/) API, this will produce an input.json file

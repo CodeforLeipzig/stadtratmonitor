@@ -13,5 +13,8 @@
     "esbuild": "^0.17.15",
     "foundation": "^4.2.1-1",
     "foundation-sites": "^6.7.5"
+  },
+  "devDependencies": {
+    "sass": "^1.62.1"
   }
 }
