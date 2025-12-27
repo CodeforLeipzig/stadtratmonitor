@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-require 'opensearch/model'
 require 'json'
 require 'parseable_date_validator'
 
 class Paper < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  searchkick
 
   validates :name,         presence: true, length: { maximum: 1000 }
   validates :url,          presence: true,

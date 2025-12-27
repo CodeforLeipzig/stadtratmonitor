@@ -1,9 +1,13 @@
+def next?
+  File.basename(__FILE__) == "Gemfile.next"
+end
 source 'https://rubygems.org'
 
 ruby "3.4.8"
 
 gem 'rails', '~> 8.1.1'
 gem 'rails-i18n'
+gem 'sprockets-rails'
 
 # database and search index
 gem 'opensearch-ruby', '~> 3.4'
@@ -50,6 +54,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop'
+  gem 'next_rails'
 end
 
 group :test do

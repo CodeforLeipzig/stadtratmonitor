@@ -39,7 +39,7 @@ class SearchController < ApplicationController
         sanitized_id = sanitized_id.gsub('/\s*\b(#{reserved.upcase})\b\s*/',
                                          " #{escaped_reserved} ")
       end
-      @sub_search_definition = Elasticsearch::DSL::Search.search do
+      @sub_search_definition = OpenSearch::DSL::Search.search do
         query do
           query_string do
             query '*' + sanitized_id + '*'

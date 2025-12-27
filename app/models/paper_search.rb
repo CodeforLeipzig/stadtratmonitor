@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class PaperSearch < ActiveRecord::Base
+  searchkick
+
   def to_definition
     options = { paper_type: paper_type, originator: originator, sort_by: sort_by }
     PaperSearch.definition(query, options)
   end
 
   def self.definition(q, options = {})
-    Elasticsearch::DSL::Search.search do
+    OpenSearch::DSL::Search.search do
       sort do
         by '_score' if options[:sort_by] == 'score'
         by :published_at, order: 'desc'
@@ -43,7 +45,7 @@ class PaperSearch < ActiveRecord::Base
 
       aggregation :paper_types do
         # filter by originator
-        f = Elasticsearch::DSL::Search::Filters::Bool.new
+        f = OpenSearch::DSL::Search::Filters::Bool.new
         f.must { match_all }
         if options[:originator].present?
           f.must { term originator: options[:originator] }
@@ -59,7 +61,7 @@ class PaperSearch < ActiveRecord::Base
 
       aggregation :originators do
         # filter by paper_type
-        f = Elasticsearch::DSL::Search::Filters::Bool.new
+        f = OpenSearch::DSL::Search::Filters::Bool.new
         f.must { match_all }
         if options[:paper_type].present?
           f.must { term paper_type: options[:paper_type] }
