@@ -10,3 +10,6 @@ network.host: 0
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
 #discovery.seed_hosts: []
+
+plugins.security.disabled: true
+discovery.type: single-node

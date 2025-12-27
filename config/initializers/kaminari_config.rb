@@ -10,4 +10,4 @@ Kaminari.configure do |config|
 end
 
 Kaminari::Hooks.init if defined?(Kaminari::Hooks)
-#Elasticsearch::Model::Response::Response.__send__ :include, Elasticsearch::Model::Response::Pagination::Kaminari
+#OpenSearch::Model::Response::Response.__send__ :include, Opensearch::Model::Response::Pagination::Kaminari
