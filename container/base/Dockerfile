@@ -2,7 +2,7 @@
 # ~~~ BASE IMAGE ~~~
 # ~~~~~~~~~~~~~~~~~~
 
-FROM docker.io/ruby:3.2.2-alpine3.17
+FROM docker.io/ruby:3.4.8-alpine3.23
 
 RUN apk update && apk add \
     build-base \
@@ -11,7 +11,7 @@ RUN apk update && apk add \
     nodejs \
     npm
 
-ENV DOCKERIZE_VERSION v0.6.1
+ENV DOCKERIZE_VERSION v0.9.9
 RUN curl -sSLO https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz

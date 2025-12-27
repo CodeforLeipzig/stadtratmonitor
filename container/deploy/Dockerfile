@@ -2,7 +2,7 @@
 # ~~~ DEPLOY IMAGE ~~~
 # ~~~~~~~~~~~~~~~~~~~~
 
-FROM code.cozy.town/codeforleipzig/stadtratmonitor/base:latest
+FROM base:latest
 
 WORKDIR /
 

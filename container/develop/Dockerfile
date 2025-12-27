@@ -2,7 +2,7 @@
 # ~~~ DEVELOP IMAGE ~~~
 # ~~~~~~~~~~~~~~~~~~~~~
 
-FROM code.cozy.town/codeforleipzig/stadtratmonitor/base:latest
+FROM base:latest
 
 RUN bundle config without test
 RUN bundle install --prefer-local

@@ -1,5 +1,5 @@
 namespace :index do
-  desc 'Rebuild elasticsearch index for Paper model'
+  desc 'Rebuild opensearch index for Paper model'
   task rebuild: :environment do
     Paper.reset_index!
   end

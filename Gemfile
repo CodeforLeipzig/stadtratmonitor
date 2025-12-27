@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
-ruby "3.2.2"
+ruby "3.4.8"
 
-gem 'rails', '~> 7.0.4'
+gem 'rails', '~> 8.1.1'
 gem 'rails-i18n'
 
 # database and search index
-gem 'elasticsearch', '~> 7.10.1'
-gem 'elasticsearch-dsl'
-gem 'elasticsearch-model', '~> 7'
-gem 'elasticsearch-rails', '~> 7'
+gem 'opensearch-ruby', '~> 3.4'
+gem 'opensearch-dsl'
+gem 'searchkick', '~> 6.0', '>= 6.0.2'
+gem 'activemodel', '~> 8.1', '>= 8.1.1'
 gem 'sqlite3'
 
 # pagination
@@ -31,7 +31,7 @@ gem 'turbolinks'
 gem 'uglifier'
 
 # misc
-gem 'leaflet-rails'
+#gem 'leaflet-rails'
 gem 'validate_url'
 
 gem 'puma'

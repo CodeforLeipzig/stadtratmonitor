@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'elasticsearch/model'
+require 'opensearch/model'
 require 'json'
 require 'parseable_date_validator'
 

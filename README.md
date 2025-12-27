@@ -50,8 +50,8 @@ There are two ways to run this app: using a local development setup, or using
 docker.
 
 ### Local machine setup
-1. Install Ruby, Bundler, Elasticsearch
-2. Start Elasticsearch: `elasticsearch`
+1. Install Ruby, Bundler, Opensearch
+2. Start Opensearch: `opensearch`
 3. Setup Rails app: `bundle && bundle exec rake db:setup`
 4. See “[Importing data via Allris Scraper](#importing-data-via-allris-scraper-optional)” below
 5. Start Rails server: `bundle exec rails s`

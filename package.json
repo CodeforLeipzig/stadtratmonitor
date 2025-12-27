@@ -6,15 +6,16 @@
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.7",
-    "bootstrap": "^5.2.3",
-    "bootstrap-icons": "^1.10.3",
-    "bootstrap-scss": "^5.2.3",
-    "esbuild": "^0.17.15",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "bootstrap-scss": "^5.3.8",
+    "esbuild": "^0.27.2",
     "foundation": "^4.2.1-1",
-    "foundation-sites": "^6.7.5"
+    "foundation-sites": "^6.9.0",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
-    "sass": "^1.62.1"
+    "sass": "^1.97.1"
   }
 }
